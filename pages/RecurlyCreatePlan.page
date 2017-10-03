@@ -1,0 +1,74 @@
+<apex:page controller="RecurlyController" docType="html-5.0">
+	<apex:includeScript value="{!URLFOR($Resource.jquery,'jquery/jquery.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.jquery,'jquery/block_ui.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.jquery,'jquery/jqueryui.js')}"/>
+	<script src="https://js.recurly.com/v3/recurly.js"></script>
+	<apex:form >
+		<apex:actionFunction name="subscription" action="{!createSubscription}" rerender="msg" oncomplete="alert('Subscription Complete');">
+			<apex:param assignTo="{!tokenId}" value="" name="tokenId"/>
+		</apex:actionFunction>
+	<apex:pageMessages id="msg"/> 
+		<apex:pageBlock title="Recurly">
+			<apex:pageBlockSection title="Create A Plan">
+				<apex:outputLabel value="Plan Code"/>
+				<apex:inputText value="{!planCode}" />
+				<apex:outputLabel value="Plan Name"/>
+				<apex:inputText value="{!planName}" />
+				<apex:outputLabel value="Setup Fee In Cents"/>
+				<apex:input type="number" value="{!setupFeeInCents}" />
+				<apex:outputLabel value="Setup Fee In Euro"/>
+				<apex:input type="number" value="{!setupFeeInEuro}" />
+				<apex:outputLabel value="Unit fee In Cents"/>
+				<apex:input type="number" value="{!unitFeeInCents}" />
+				<apex:outputLabel value="Unit Fee In Euro"/>
+				<apex:input type="number" value="{!unitFeeInEuro}" />
+				<apex:outputLabel value="Plan Interval Length"/>
+				<apex:input type="number" value="{!planLength}" />
+				<apex:outputLabel value="Plan Interval Unit"/>
+				<apex:selectList value="{!planIntervalUnit}" size="1" multiselect="false">
+					<apex:selectOptions value="{!planIntervalUnitList}"/>
+				</apex:selectList>
+				<apex:outputLabel value="Tax Exempt"/>
+				<apex:inputCheckbox value="{!taxExempt}" />
+				<apex:commandbutton value="Create" action="{!createPlan}" rerender="msg"/>
+			</apex:pageBlockSection>
+			
+			<apex:pageBlockSection title="Create A Subscription" columns="1">
+            	<apex:commandbutton value="Create Subscription" styleClass="subscription" rerender="msg"/>
+			</apex:pageBlockSection>
+			
+			<apex:pageBlockSection title="Create A Account">
+				<apex:commandbutton value="Check" action="{!check}" rerender="msg"/>
+			</apex:pageBlockSection>
+	
+		</apex:pageBlock>
+	</apex:form>
+	<script>
+			recurly.configure('sc-egMSVhZQJwPFO2WIFQXtxa');
+			$(document).ready(function(){
+			  $('form').on('submit', function (event) {
+					  var form = this;
+					  //event.preventDefault();
+
+					//var one= recurly.validate.cardNumber(billingInfo.number);
+					//var two = recurly.validate.expiry(billingInfo.month,billingInfo.year);
+					//var three = recurly.validate.cvv(billingInfo.cvv);
+					//alert(recurly.validate.cvv('123'));
+					
+						recurly.token(form, function (err, token) {
+						if (err) {
+									alert('Error');
+					    } else {
+								
+						     alert('succesfull Token Is :');
+						     console.debug(JSON.stringify(token));
+						     
+						     subscription(token.id);
+					      
+					    }
+				});	
+					
+			  });
+			});
+	</script>
+</apex:page>

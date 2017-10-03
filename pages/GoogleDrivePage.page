@@ -1,0 +1,56 @@
+<apex:page controller="GoogleDriveController" action="{!googleDriveTokenCaller}">
+    <apex:pageblock rendered="{!displayBlock}" title="Google Drive Operations">       
+			<apex:form id="form3">
+                    <apex:outputPanel title="Google Drive Operations"> 
+	                     <apex:commandbutton value="Upload a file" action="{!renderFileUpload}" reRender="form1,form2" />
+	                     <apex:commandbutton value="Create a folder" action="{!renderCreateFolder}" reRender="form2,form1"/>
+	                     <apex:commandbutton value="Download a file" action="{!renderDownloadFile}" reRender="form2,form1"/>
+	                     <apex:commandbutton value="Delete a file" action="{!renderDeleteFile}" reRender="form2,form1"/>    
+	        		</apex:outputPanel> 
+	        </apex:form>
+			<apex:form id="form1">
+                	<apex:pageBlockSection title="File Upload" rendered="{!fileUploadRender}" id="up"> 
+	                	 <apex:outputText value="Select Parent Folder"/>
+	                     <apex:selectList value="{!selectedParentFolderForFile}" size="1">
+	                     	<apex:selectOptions value="{!FolderList}"></apex:selectOptions>
+	                     </apex:selectList>
+	                     <apex:inputFile value="{!fileToUpload}" filename="{!file_name}" contentType="{!file_content_type}">
+	                     </apex:inputFile>
+	                     <apex:commandbutton action="{!uploadFileToGoogleDrive}" value="Upload" />     
+	                </apex:pageBlockSection>
+             </apex:form>  
+             <apex:form id="form2">     
+             	                 	
+                 	<apex:actionFunction reRender="delete" name="refreshDelete"></apex:actionFunction>
+                	<apex:actionFunction reRender="createfolder" name="refreshFolder"></apex:actionFunction>
+                	<apex:actionFunction reRender="downloadlink" name="refreshDownload"></apex:actionFunction>
+             
+                    <apex:pageBlockSection title="Create Folder" rendered="{!createFolderRender}" id="cre">
+                        <apex:outputText value="Select Parent Folder"/>
+                        <apex:selectList value="{!selectedParentFolder}" size="1">
+                        	<apex:selectOptions value="{!FolderList}"></apex:selectOptions>
+                        </apex:selectList>
+                        <apex:outputText value="Folder Name"/>
+                        <apex:inputText value="{!folder_name}" onkeyup="refreshFolder()"/>
+                        <apex:commandbutton action="{!createGoogleDriveFolder}" value="Create a Folder" disabled="{!if(folder_name == '' || folder_name == null,true,false)}" id="createfolder"/>
+                    </apex:pageBlockSection>
+                    
+                    <apex:pageBlockSection title="Download a file" rendered="{!downloadFileRender}" id="dow" columns="3">
+                    	
+                        <apex:outputText value="Select File"/>
+                        <apex:selectList value="{!selectedFileToDownload}" size="1" onchange="refreshDownload()">
+                        	<apex:selectOptions value="{!DownloadFileList}"></apex:selectOptions>
+                        </apex:selectList> 
+                        <apex:commandLink action="{!getFileFromGoogleDrive}" value="Get File"  id="downloadlink" target="_blank"/>       
+                    </apex:pageBlockSection>
+                    
+                    <apex:pageBlockSection title="Delete A File" rendered="{!deleteFileRender}" id="del">                   	
+                    	<apex:outputText value="Select File"/>
+                        <apex:selectList value="{!selectedFileToDelete}" size="1" onchange="refreshDelete()">
+                        	<apex:selectOptions value="{!FileList}"></apex:selectOptions>
+                        </apex:selectList>
+                    	<apex:commandbutton action="{!deleteFileFromGoogleDrive}" value="Delete file" disabled="{!if(selectedFileToDelete == 'None' || selectedFileToDelete == null,true,false)}" id="delete"/>
+                    </apex:pageBlockSection>
+                </apex:form>  
+        </apex:pageblock>
+</apex:page>

@@ -1,0 +1,7 @@
+<apex:page controller="DropboxController">
+	<apex:form >
+		<apex:pageblock >
+			 <apex:commandbutton action="{!dropAuth}" value="Integeration With DropBox"/>
+		</apex:pageblock>
+	</apex:form>
+</apex:page>

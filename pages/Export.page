@@ -1,0 +1,9 @@
+<apex:page cache="true" contentType="application/vnd.ms-excel#FILENAME.xls" controller="FieldExportController" >
+    <apex:pageBlock title="Exported Records">
+        <apex:pageBlockTable value="{!selectedObjectFields}" rendered="{!if(selectedObjectFields!=null,true,false)}" var="item">
+        <apex:column value="{!item.Id}"/>
+        <apex:column value="{!item["Name"]}"/>
+        </apex:pageBlockTable>
+        <script>{!selectedObjectFields=null}</script>
+    </apex:pageBlock>
+</apex:page>

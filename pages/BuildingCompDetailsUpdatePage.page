@@ -1,0 +1,16 @@
+<apex:page standardController="Building_Comp_Detail__c" showHeader="false" sidebar="false" extensions="BuildingCompDetailUpdateController">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons >
+                    <apex:commandButton value="Save" action="{!myUpdate}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection >
+                    <apex:inputField value="{!Building_Comp_Detail__c.Ranking__c}"/>
+                    <apex:inputField value="{!Building_Comp_Detail__c.Criticality_Factor__c}"/>
+                    <apex:inputField value="{!Building_Comp_Detail__c.Condition_out_of_line__c}"/>
+                    <apex:inputField value="{!Building_Comp_Detail__c.Utilization_Rate__c}"/>
+                    <apex:inputField value="{!Building_Comp_Detail__c.Distress_Rating__c}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
