@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject
+    xmlns="http://soap.sforce.com/2006/04/metadata">
+    <recordTypes>
+        <fullName>Village</fullName>
+        <active>true</active>
+        <label>Village</label>
+        <picklistValues>
+            <picklist>Cloth_Type__c</picklist>
+            <values>
+                <fullName>Dhoti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kurta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lahanga</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Odhni</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+</CustomObject>

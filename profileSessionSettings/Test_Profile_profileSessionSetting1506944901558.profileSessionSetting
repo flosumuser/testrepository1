@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProfileSessionSetting xmlns="http://soap.sforce.com/2006/04/metadata">
+    <forceLogout>false</forceLogout>
+    <profile>test profile</profile>
+    <requiredSessionLevel>HIGH_ASSURANCE</requiredSessionLevel>
+    <sessionTimeout>60</sessionTimeout>
+    <sessionTimeoutWarning>false</sessionTimeoutWarning>
+</ProfileSessionSetting>

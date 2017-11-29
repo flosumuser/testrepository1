@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Bye</masterLabel>
+        <translation>バイ</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Hello</masterLabel>
+        <translation>こんにちは</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Hi</masterLabel>
+        <translation>こんにちは</translation>
+    </valueTranslation>
+</GlobalValueSetTranslation>

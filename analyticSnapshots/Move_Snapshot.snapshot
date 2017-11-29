@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticSnapshot xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This is test analytic snapshot.</description>
+    <mappings>
+        <sourceField>JobName</sourceField>
+        <sourceType>snapshot</sourceType>
+        <targetField>TestP__c.Name</targetField>
+    </mappings>
+    <name>Move Snapshot</name>
+    <runningUser>saini@metadata.com</runningUser>
+    <sourceReport>unfiled$public/MoveReport</sourceReport>
+    <targetObject>TestP__c</targetObject>
+</AnalyticSnapshot>

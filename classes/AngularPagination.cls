@@ -16,6 +16,10 @@ public with sharing class AngularPagination
             system.debug( 'Sobject: ' + objResult );
             system.debug( 'Sobject API Name: ' + objResult.getName() );
             system.debug( 'Sobject Label Name: ' + objResult.getLabel() );
+            
+            /*system.debug( 'Sobject: ' + objResult );
+            system.debug( 'Sobject API Name: ' + objResult.getName() );
+            system.debug( 'Sobject Label Name: ' + objResult.getLabel() );*/
             names.add(objResult.getName().toLowerCase());
             
         }

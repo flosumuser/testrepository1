@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>AccountData</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AccountDataRetriever</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <description>PermissionTest Description</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>PermissionTest</label>
+    <pageAccesses>
+        <apexPage>JumboPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>LocalFlosum__FL_CustomLookup</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>LocalFlosum__FL_LocalWorkspace</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>LocalFlosum__FL_RegisterFlosumOrg</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>LocalFlosum__FL_RemoteRepository</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+</PermissionSet>

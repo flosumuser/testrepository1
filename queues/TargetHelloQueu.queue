@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>TargetHelloQueu</name>
+    <queueSobject>
+        <sobjectType>Branch__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Component__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Console_Home__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Dependent_Picklist__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Gondola__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Target_Hello_Object__c</sobjectType>
+    </queueSobject>
+</Queue>

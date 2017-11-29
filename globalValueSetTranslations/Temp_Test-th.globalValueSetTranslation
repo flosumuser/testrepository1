@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Test</masterLabel>
+        <translation>Test1 Thai</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Test2</masterLabel>
+        <translation><!-- Test2 --></translation>
+    </valueTranslation>
+</GlobalValueSetTranslation>

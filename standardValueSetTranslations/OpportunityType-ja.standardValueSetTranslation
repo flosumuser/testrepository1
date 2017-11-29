@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Existing Customer - Downgrade</masterLabel>
+        <translation><!-- Existing Customer - Downgrade --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Existing Customer - Replacement</masterLabel>
+        <translation><!-- Existing Customer - Replacement --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Existing Customer - Upgrade</masterLabel>
+        <translation><!-- Existing Customer - Upgrade --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>New Customer</masterLabel>
+        <translation>Translated New Customer</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

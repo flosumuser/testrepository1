@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject
+    xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Encrypt2__c</fullName>
+        <externalId>false</externalId>
+        <label>Encrypt2</label>
+        <length>25</length>
+        <maskChar>X</maskChar>
+        <maskType>lastFour</maskType>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>EncryptedText</type>
+    </fields>
+</CustomObject>

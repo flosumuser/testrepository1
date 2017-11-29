@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject
+    xmlns="http://soap.sforce.com/2006/04/metadata">
+    <webLinks>
+        <fullName>ShowTree</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>ShowTree</masterLabel>
+        <openType>replace</openType>
+        <page>TreeStructure</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

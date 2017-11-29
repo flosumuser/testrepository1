@@ -1,0 +1,15 @@
+<messaging:emailTemplate subject="Test" recipientType="User" relatedToType="EmailTemplate__c">
+    <messaging:plainTextEmailBody >
+        Congratulations!
+        This is your new Visualforce Email Template.
+    </messaging:plainTextEmailBody>
+    <messaging:htmlEmailBody >
+        <apex:image url="{!URLFOR($Resource.Test,'Test/58832_300x300.jpg')}" width="50" height="50"/>
+    </messaging:htmlEmailBody>
+    <messaging:attachment renderAs="image/jpg" filename="58832_300x300.jpg">
+        <apex:image url="{!URLFOR($Resource.Test,'Test/58832_300x300.jpg')}" width="50" height="50"/>
+    </messaging:attachment>
+    <messaging:attachment renderAs="image/jpg" filename="58832_300x300.jpg">
+        <apex:image url="{!URLFOR($Resource.Test,'Test/58832_300x300.jpg')}" width="50" height="50"/>
+    </messaging:attachment>
+</messaging:emailTemplate>
