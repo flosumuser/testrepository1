@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject    xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Branch__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Branch</description>
+        <externalId>false</externalId>
+        <label>Branch</label>
+        <referenceTo>Branch__c</referenceTo>
+        <relationshipLabel>Components</relationshipLabel>
+        <relationshipName>Components</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Test__c</fullName>
+        <externalId>false</externalId>
+        <label>Test</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject    xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Branch_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Branch Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Branch__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Branch Lookup</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Branch__c.RecordType.Id</field>
+                <operation>notEqual</operation>
+                <value/>
+            </filterItems>
+            <infoMessage>Select a record type</infoMessage>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Branch__c</referenceTo>
+        <relationshipLabel>Branches</relationshipLabel>
+        <relationshipName>Branches</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>true</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Test_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Test Email</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Test_Two__c</fullName>
+        <externalId>false</externalId>
+        <label>Test Two</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.Id</field>
+                <operation>notEqual</operation>
+                <value/>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Branches</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+</CustomObject>

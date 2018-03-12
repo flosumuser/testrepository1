@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject    xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Pick1__c</fullName>
+        <description>Pick1 test record pick</description>
+        <externalId>false</externalId>
+        <label>Pick1</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>TestRP</valueSetName>
+        </valueSet>
+    </fields>
+</CustomObject>
