@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomObject    xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -73,7 +73,7 @@
         <label>Branch Name</label>
         <length>255</length>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -87,7 +87,7 @@
             <filterItems>
                 <field>Branch__c.RecordType.Id</field>
                 <operation>notEqual</operation>
-                <value></value>
+                <value/>
             </filterItems>
             <infoMessage>Select a record type</infoMessage>
             <isOptional>false</isOptional>
@@ -115,7 +115,7 @@
         <label>Test Two</label>
         <length>255</length>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -124,6 +124,15 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>User</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.Id</field>
+                <operation>notEqual</operation>
+                <value/>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
         <referenceTo>User</referenceTo>
         <relationshipName>Branches</relationshipName>
         <required>false</required>

@@ -86,6 +86,10 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>AClass1</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AccountData</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -231,6 +235,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>GitHubController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GlobalUse</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -383,6 +391,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>One123</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PaginationWithWraperSortingController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -887,6 +899,31 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Big_Object_Test__b.In_Game_Purchase__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Big_Object_Test__b.Level_Achieved__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Big_Object_Test__b.Lives_This_Game__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Big_Object_Test__b.Play_Duration__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Big_Object_Test__b.Score_This_Game__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Branch__c.Branch_Name__c</field>
         <readable>true</readable>
@@ -934,6 +971,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Campaign.BudgetedCost</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.CampaignImageId</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1290,6 +1332,11 @@
         <editable>true</editable>
         <field>Component__c.Branch__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Component__c.Test__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2758,6 +2805,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Product2.CanUseQuantitySchedule</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.CanUseRevenueSchedule</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Product2.Description</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3973,6 +4030,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Test_Child__c.Account_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Test_Child__c.Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4015,6 +4077,11 @@
         <editable>true</editable>
         <field>Test__c.Test_Three__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.Test__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -4701,6 +4768,9 @@
         <layout>Scorecard-Scorecard Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>ScorecardAssociation-Scorecard Association Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>ScorecardMetric-Scorecard Metric Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -5234,6 +5304,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>PaginationWithWraperSorting</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>PreetyDiff</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -5559,6 +5633,10 @@
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>standard-CollaborationGroup</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>standard-Contact</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -5662,6 +5740,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>AllowViewKnowledge</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ApexRestServices</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -5806,6 +5888,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewHelpLink</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewRoles</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
