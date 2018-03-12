@@ -1,0 +1,9 @@
+<apex:page controller="GoogleDriveController">
+ o   <apex:pageblock >
+        <apex:form >
+            <apex:pageblockSection >
+                <apex:commandButton action="{!googleAuth}" value="Integeration With Google Drive"></apex:commandButton> 
+            </apex:pageblockSection>
+        </apex:form>
+    </apex:pageblock>
+</apex:page>

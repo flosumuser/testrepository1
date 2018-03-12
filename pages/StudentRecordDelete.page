@@ -1,0 +1,38 @@
+<apex:page Controller="StudentRecord">
+    <apex:form >
+        <apex:pageBlock title="Student Record" mode="edit">
+           <center><h1><apex:outputText value="{!student.Name}"/>&nbsp;&nbsp;&nbsp; 
+            <apex:outputText value="{!message}"/></h1></center>
+            <apex:pageBlockButtons >
+               <!-- <apex:commandButton action="{!showRecord}" value="Submit"/>
+                 <apex:commandButton action="{updateRecord}" value="Update"/>-->
+                 
+                  <apex:commandButton action="{deleteRecord}" value="Delete Record"/>
+                 
+                 
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Student Record" columns="2">
+     
+                
+              <apex:inputField value="{!student.Name}"/><br></br>
+              
+               <!--
+               <apex:inputField value="{!student.Name}"/><br></br>
+                <apex:inputField value="{!student.Gender__c}"/><br></br>
+                <apex:inputField value="{!student.DOB__c}"/><br></br>
+                 <apex:inputField value="{!student.Email_ID__c}"/><br></br>
+                   <apex:inputField value="{!student.Mobile_No__c}"/><br></br>
+                     <apex:inputField value="{!student.pinNumber__c}"/><br></br>
+                <apex:inputField value="{!student.CurrentAddress__c}"/><br></br>
+                
+                <apex:inputField value="{!student.Permanent_Address__c}"/><br></br>
+              
+               <apex:inputField value="{!student.Class__c}"/><br></br>
+           -->
+             
+                
+             
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

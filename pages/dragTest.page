@@ -1,0 +1,71 @@
+<apex:page controller="CustomObjectFieldViewerController" docType="html-5.0">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<style>
+		#div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+	</style>
+	<script>
+		function allowDrop(ev) {
+	    ev.preventDefault();
+		}
+		
+		function drag(ev) {
+		    ev.dataTransfer.setData("Text", ev.target.id);
+		}
+		
+		function drop(ev) {
+		    ev.preventDefault();
+		    var data = ev.dataTransfer.getData("Text");
+		    ev.target.appendChild(document.getElementById(data));
+		}
+	</script>
+    <apex:form >
+        <apex:actionFunction reRender="table,pagination" name="tablerefresh" action="{!setOffset}" status="StatusChange"/>
+        <apex:pageBlock title="Custom Object Field Viewer">
+        <!-- picklist of custom object-->
+            <apex:outputText value="Select An Object:"/>
+                <apex:selectList onchange="tablerefresh()" value="{!selectedobject}" size="1" >
+
+                <apex:selectOption itemValue="{!null}" itemLabel="Select"/>
+                <apex:selectOptions value="{!objectlist}"></apex:selectOptions>
+            
+                </apex:selectList>
+            <apex:actionStatus startText="Updating Table ..." id="StatusChange"/>
+        <!-- table of object name and id field-->
+           <apex:pageBlockSection id="table"  >
+                   <apex:pageBlockTable value="{!objectfields}"  var="item" rendered="{!if(objectfields!= null && objectfields.size>0,true,false)}" id="table" >
+                       <apex:column headerValue="Select">
+                           
+                           <apex:inputCheckbox value="{!item.selected}" onclick="tablerefresh()"  />
+                       </apex:column>
+                       
+                       <apex:column value="{!item.sob.id}" />
+              
+                       <apex:column value="{!item.sob["name"]}"/>
+                       
+                   </apex:pageBlockTable>
+                   <apex:actionStatus startText="Updating Table ..." id="pginationaction"/>
+                <!-- pagination buttons-->    
+           </apex:pageBlockSection>
+           <apex:outputPanel id="pagination">
+                    <apex:commandButton value="Export" rendered="{!if(objectfields!= null && objectfields.size>0,true,false)}" action="{!processSelected}" rerender="table" />
+                    <apex:commandButton rendered="{!if(objectfields!= null && objectfields.size>0,true,false)}" value="First Page" rerender="pagination,table" action="{!FirstPage}"
+                             disabled="{!prev}" status="pginationaction" style="margin-left:175px;" />
+                     
+                    <apex:commandButton rendered="{!if(objectfields!= null && objectfields.size>0,true,false)}" value="Previous" rerender="table,pagination" action="{!previous}" disabled="{!prev}" status="pginationaction"/>
+                    <apex:commandButton rendered="{!if(objectfields!= null && objectfields.size>0,true,false)}" value="Next" rerender="table,pagination" action="{!next}" disabled="{!nxt}" status="pginationaction"/>
+                    <apex:commandButton rendered="{!if(objectfields!= null && objectfields.size>0,true,false)}" value="Last Page" rerender="pagination,table" action="{!LastPage}" disabled="{!nxt}" status="pginationaction"/>
+           </apex:outputPanel>         
+        </apex:pageBlock>
+        <apex:pageBlock >
+        	<p>Drag the W3Schools image into the rectangle:</p>
+				<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+				</div>
+				<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+				</div>
+				<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+				</div>
+			<img id="drag1" src="https://c.ap1.visual.force.com/img/seasonLogos/2014_summer_aloha.png" draggable="true" ondragstart="drag(event)" width="336" height="69">
+			</img>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

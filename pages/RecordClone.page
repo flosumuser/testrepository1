@@ -1,0 +1,22 @@
+<apex:page standardController="Account" extensions="CloneController" showHeader="false" sidebar="false" docType="html-5.0">
+    <apex:form >
+        <apex:pageMessage id="msg" severity="error"/>
+        <apex:pageBlock title="Clone a record" rendered="{!if(CreateClone != null && CreateClone.size > 0,true,false)}">
+            
+               <apex:repeat value="{!CreateClone}" var="res">
+                    <apex:repeat value="{!Allfields}" var="field"  >
+                        <apex:pageBlockSection columns="2">
+                            
+                               
+                                <apex:inputField value="{!res[field]}"/>
+                           
+                        </apex:pageBlockSection>    
+                    </apex:repeat>
+                </apex:repeat>
+                <apex:pageBlockButtons >
+                     <apex:commandButton value="Save" action="{!saveClone}"/>
+                     <apex:commandButton value="Cancel" action="{!cancelClone}"/>
+                </apex:pageBlockButtons>
+        </apex:pageBlock>  
+    </apex:form>
+</apex:page>

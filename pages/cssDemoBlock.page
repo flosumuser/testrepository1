@@ -1,0 +1,229 @@
+<apex:page showHeader="false" sideBar="false" standardStyleSheets="false"  applyBodyTag="false" applyHtmlTag="false" docType="html-5.0">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+                <apex:form >
+                    <apex:actionFunction name="changeTabAF" oncomplete="YUIHideLoading();" action="{!changeTab}" rerender="outerPanel">
+                        <apex:param name="section" value=""/>
+                    </apex:actionFunction>
+                    
+                    
+                 </apex:form>
+                
+                <div class="bs-example">
+                    <ul class="nav nav-tabs" id="myTab">
+                        <!-- <li class="active"><a href="#MemberShip" >MemberShip</a></li> -->
+                        <li class="active"><a href="#contact">Contact</a></li>
+                        <li><a href="#events" >Events</a></li> 
+                        <li><a href="#transaction" >Transaction</a></li>
+                        <li><a href="#certification" >Certification</a></li>
+                        <li><a href="#contribution" >Contribution</a></li>
+                        <li><a href="#landlord" >Landlord</a></li>
+                        <li><a href="#helpline" >Helpline</a></li>
+                        <li><a href="#properties" >Properties</a></li>
+                    </ul>
+                   
+                   
+                   <apex:outPutPanel styleclass="tab-content" layout="block" id="outerPanel">
+                            <div class="tab-pane" id="credentials">
+                                <apex:outPutPanel layout="block"  id="Credentials">
+                                    <h1>All Contact</h1>
+                                    <p>orange orange orange orange orange</p>
+                                </apex:outPutPanel>
+                            </div>
+                            
+                            <div  id="contact">
+                            <apex:outPutPanel layout="block" >
+                                <h1>All Contact</h1>
+                                <div class="row" style="padding:10px">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <apex:variable value="{!1}" var="counter"/>
+                                             
+                                                        
+                                                   
+                                                <apex:variable value="{!1+counter}" var="counter"/> 
+                                               
+                                            </tbody>    
+                                        </table>
+                                </div>
+                                
+                            </apex:outPutPanel>
+                            </div>
+                            
+                            <div class="tab-pane" id="events">
+                            <apex:outPutPanel layout="block"  id="Events">
+                                <h1>All Events</h1>
+                                <div class="row" style="padding:10px">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Event Name</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
+                                                    <th>City</th>
+                                                    <th>Country</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                              
+                                            </tbody>    
+                                        </table>
+                                </div>
+                            </apex:outPutPanel>
+                            </div>
+                            
+                            <div class="tab-pane" id="transaction">
+                            <apex:outPutPanel layout="block"  id="Transaction">
+                                <h1>Transaction History</h1>
+                                     <div class="row" style="padding:10px">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Transaction Id </th>
+                                                    <th>Is Success </th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               
+                                            </tbody>    
+                                        </table>
+                                </div>
+                                    
+                            </apex:outPutPanel>
+                            </div>
+                            
+                            <div class="tab-pane" id="certification">
+                            <apex:outPutPanel layout="block"  id="Certification">
+                                <h1>Blue</h1>
+                                <p>blue blue blue blue blue</p>
+                            </apex:outPutPanel>
+                            </div>
+                            
+                            <div class="tab-pane" id="contribution">
+                            <apex:outPutPanel layout="block"  id="Contribution">
+                                <h1>Blue</h1>
+                                <p>blue blue blue blue blue</p>
+                            </apex:outPutPanel>
+                            </div>
+                            
+                            <div class="tab-pane" id="landlord">
+                            <apex:outPutPanel layout="block"  id="Landlord">
+                                <h1>Blue</h1>
+                                <p>blue blue blue blue blue</p>
+                            </apex:outPutPanel>
+                            </div>
+                            
+                            <div class="tab-pane" id="helpline">
+                            <apex:outPutPanel layout="block" id="Helpline">
+                                <h1>Blue</h1>
+                                <p>blue blue blue blue blue</p>
+                            </apex:outPutPanel>
+                            </div>
+                            
+                            <div class="tab-pane" id="properties"> 
+                                <apex:outPutPanel layout="block" id="properties">
+                                    <h1>Standard Properties</h1>
+                                    <apex:form >
+                                        <div class="row" style="padding:10px">
+                                            <apex:variable value="{!1}" var="counter"/>
+                                            
+                                                <div class="col-lg-12" style="padding: 1em; border: 1px solid #EEE; box-shadow: 4px 4px 0 0 #DDD;background-color: #FFF;margin: 1.5em;  border-radius: 7px; ">
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <apex:outputLabel value="Property Name" for="PropName"/>
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputLabel value="Phone" for="propPhone"/>
+                                                               
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputLabel value="Property # of Units" for="propPhone"/>
+                                                               
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <apex:outputLabel value="Number of Units" for="propPhone"/>
+                                                              
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputLabel value="Billing First Name" for="propPhone"/>
+                                                               
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputLabel value="Billing Last Name" for="propPhone"/>
+                                                               
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <apex:outputLabel value="Billing Address1" for="propPhone"/>
+                                                             
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputLabel value="Billing Address2" for="propPhone"/>
+                                                              
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputLabel value="Billing State" for="propPhone"/>
+                                                               
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <apex:outputLabel value="Billing City" for="propPhone"/>
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputLabel value="Billing Email" for="propPhone"/>
+                                                               
+                                                            </td>
+                                                            <td>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    
+                                                    
+                                                    <!-- 
+                                                    <apex:commandButton style="width : 70%; float : right;" value="save" action="{!updateAccount}" rerender="none"  ><apex:param name="param" assignTo="{!updateAccountId}" value="{!refrence.id}"/></apex:commandButton> -->
+                                                    
+                                                </div>
+                                             
+                                        </div>
+                                    </apex:form>
+                                </apex:outPutPanel>
+                            </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                  </apex:outPutPanel>
+                </div>
+          </apex:pageBlockSection>   
+          </apex:pageBlock>
+</apex:page>

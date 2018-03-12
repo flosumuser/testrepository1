@@ -1,0 +1,23 @@
+<apex:page controller="nativeController" contentType="txt/xml#myTest.xls" cache="true" showHeader="false">
+    <apex:form >
+        <apex:pageBlock id="thePageBlock" title="Native objects">
+            <apex:pageBlockSection title=" Show Native Information" columns="2">
+               <apex:outputPanel id="pageblocktable" >
+                 <apex:pageBlockTable value="{!wrapperClassList}" var="rowItem" >
+                        <apex:column width="5%">
+                            <apex:inputCheckbox id="ckbSinglecheckeStudent" value="{!rowItem.selected}" />
+                        </apex:column>    
+                         <apex:column width="5%">
+                             <apex:commandLink value="{!rowItem.ed}" action="{!Edit}">Edit
+                             </apex:commandLink>&nbsp;&nbsp;
+                            <apex:commandLink value="{!rowItem.del}" action="{!del}">Del</apex:commandLink>
+                        </apex:column>
+                        <apex:repeat value="{!getfield}" var="colItem">
+                            <apex:column value="{!rowItem.record[mapValuesField[colItem]]}"/>
+                        </apex:repeat>
+                 </apex:pageBlockTable>
+               </apex:outputPanel>
+             </apex:pageBlockSection> 
+             </apex:pageBlock>  
+     </apex:form>
+</apex:page>

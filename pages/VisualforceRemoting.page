@@ -1,0 +1,62 @@
+<apex:page controller="VisualforceRemotingController">
+	<apex:pageblock >
+		<apex:form >
+			<apex:pageblocksection title="Account">
+				<apex:commandbutton value="Action" onClick="callVisualforceRemotion();" reRender="none"/>
+				<table id="dynamicTable" border="1"> 
+					
+				</table>
+			</apex:pageblocksection>
+		</apex:form>
+	</apex:pageblock>
+	<script>
+		
+		function callVisualforceRemotion()
+		{
+			Visualforce.remoting.Manager.invokeAction(
+				            '{!$RemoteAction.VisualforceRemotingController.showRecord}',
+				            handleResult   
+				        );
+		}
+		function handleResult(r,e)
+		{
+			if(e.status) 
+			{
+				console.log('No. of Record:'+r.length);
+			    for(var i in r)
+            	{
+					if(i < r.length)
+					{
+						if(r[i] != undefined)
+						{
+							showRecords(r[i]);
+						}
+					}
+				}
+			}
+			else
+			{
+				alert('!Error');
+			}
+		}
+		function showRecords(record)
+		{
+			var table = document.getElementById("dynamicTable");
+			if(table != undefined)
+			{
+				var tr = document.createElement("tr");
+				var td = document.createElement("td");
+				var td2 = document.createElement("td");
+				
+				var id = document.createTextNode(record.Id);
+				var name = document.createTextNode(record.Name);
+				
+				table.appendChild(tr);
+				tr.appendChild(td);
+				td.appendChild(id);
+				tr.appendChild(td2);
+				td2.appendChild(name);
+			}
+		}
+	</script>
+</apex:page>

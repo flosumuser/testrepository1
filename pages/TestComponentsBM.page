@@ -1,0 +1,24 @@
+<apex:page Controller="TestComponentsController">
+<apex:sectionHeader title="This is a Header 1">
+<apex:form >
+<apex:pageblock >
+<apex:pageBlocksection >
+
+</apex:pageBlocksection>
+
+</apex:pageblock>
+<apex:pageBlock >
+
+</apex:pageBlock>
+<apex:pageBlock >
+
+</apex:pageBlock>
+
+</apex:form>
+
+</apex:sectionHeader>
+
+<apex:sectionHeader title="This is a Header 2">
+</apex:sectionHeader>
+
+</apex:page>

@@ -1,0 +1,189 @@
+<apex:page controller="nativeController" >
+      <apex:includeScript value="{!URLFOR($Resource.jquery)}"/>
+      <script>
+        var val=null;
+        var chk=true;
+        
+       function selectedValue(listVal){
+         
+          val=document.getElementById(listVal).value;
+        
+       }
+         
+         function unCheckFacet(facetChk){
+            
+            UncheckBoxAction();
+          }
+       
+        function login(th,listV){
+            
+              
+                var CLIENTID;
+                var REDIRECT;
+                var _url ;
+                var acToken; 
+                var win;
+                 if(val != null ){     
+                            var code;
+                            CLIENTID    =   '170768363119-qlh82nh9nn5cane749p1apo2fgcs2gkj.apps.googleusercontent.com';
+                            REDIRECT    =   'https://c.na15.visual.force.com/apex/popUpPage';
+                            _url        =   'https://accounts.google.com/o/oauth2/auth?'+  
+                                            'client_id='+CLIENTID+  
+                                            '&response_type=code'+  
+                                            '&scope=https://www.googleapis.com/auth/drive'+  
+                                            '&redirect_uri=https://c.na15.visual.force.com/apex/popUpPage'+
+                                            '&state=security_token'+
+                                            '&approval_prompt=force'+  
+                                            '&login_hint=jsmith@example.com&'+  
+                                            'access_type=offline'; 
+                        
+                             win         =   window.open(_url, "windowname1", 'width=800, height=600');
+               }else{
+                 if(val==null){
+                   alert('Please Select File Format...');
+                 }
+               }               
+           }
+          
+          
+        
+          function checkAll(cb){
+           try{ 
+                  var inputElem = document.getElementsByTagName("input");
+                  for(var i=0; i<inputElem.length; i++){
+                       if(inputElem[i].id.indexOf("ckbSinglechecke")!=-1)
+                       inputElem[i].checked = cb.checked;
+                  }            
+              }catch(e){
+                   alert(e);
+               }
+           }
+           
+           function myFunctionVal(myFunId){
+             var boolean='true';
+            alert(myFunId);
+           
+           } 
+          function myFunction(myId){
+            window.open('/'+myId+'/e');
+            Window.stop();
+          }
+
+         function deleteFunction(delId){
+              if(confirm('Are You Sure'))
+                if(delId != null){
+                 myActionFunction(delId);
+                }
+          }
+         
+         
+    </script> 
+    <style>
+        .statusStyle {
+            background:url(/img/loading.gif) no-repeat 0 0; 
+            padding-left:20px; 
+            margin-left:10px; 
+            padding-bottom:5px; 
+        }
+        .msg{
+          color:Red; 
+          font-size:16px;
+        }
+    </style>
+    <apex:form id="form1">
+      
+      <apex:actionFunction action="{!updateDataFunction}" name="myActionFunction"  reRender="showtablerecords">
+              <apex:param name="recordId" value="Hello" />
+        </apex:actionFunction> 
+        <apex:actionFunction action="{!UncheckBox}" name="UncheckBoxAction"  reRender="showtablerecords">
+              <apex:param name="recordId" value="Hello" />
+        </apex:actionFunction>
+       <apex:outputpanel >
+        <apex:actionstatus id="loading">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #DCD6D6;
+                       height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="top: 74.2px; width: 91px;">
+                        <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                        <span class="waitingDescription">loading...</span>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+    </apex:outputpanel>
+        <apex:pageBlock id="thePageBlock" title="Native objects">
+              <apex:pageBlockSection title="Show Native Information" columns="2" >
+                    <apex:pageblockSectionItem >
+                        <apex:outputPanel id="ObjectTabPanel">   
+                             <apex:outputLabel value="Objects Name :"/>
+                             <apex:selectList id="theObjectname" value="{!nativeAndCustomObject}" size="1">
+                                  <apex:selectOptions value="{!options}" id="TheObjectsName"/>
+                                  <apex:actionSupport event="onchange" action="{!getFieldsName}" id="theActionSupport" reRender="theMessageShow,ObjectTabPanel,FieldsName,pageblocktable,thefileshow,thePageBlock" status="loading"/>
+                             </apex:selectList>
+                           </apex:outputPanel>
+                        </apex:pageblockSectionItem>
+                        <apex:pageblockSectionItem >       
+                           <apex:outputPanel id="FieldsName">
+                              <apex:outputLabel rendered="{!ListfieldName.size != 0}" value="Fields Name :"  >
+                                  <apex:selectList id="theFieldsname" value="{!getfield}" size="1" multiselect="true" >
+                                       <apex:selectOptions value="{!ListfieldName}" id="theFields"  />
+                                  </apex:selectList>
+                              <apex:commandButton action="{!recordShowData}" value="View Record" id="theButton" reRender="thePageBlock,pageblocktable,thefileshow,FieldsName,theMessageShow" status="loading"/>
+                             </apex:outputLabel>
+                        </apex:outputPanel>  
+                   </apex:pageBlockSectionItem>    
+               </apex:pageblockSection><br/>
+               <apex:outputPanel id="theMessageShow" styleClass="msg">
+                    <h1><apex:outputText value="{!message}"/></h1>
+               </apex:outputPanel>
+              <apex:pageBlockSection id="pageblocktable" columns="1" >
+                  <apex:outputPanel rendered="{!wrapperClassList.size !=0}" id="showtablerecords" >
+                        <apex:pageBlockTable value="{!wrapperClassList}" var="rowItem" id="tableshow" >
+                            <apex:column width="5%" >
+                                 <apex:facet name="header"> <apex:inputCheckbox onclick="checkAll(this)" value="{!chkValue}" id="theInputCheckBox"></apex:inputCheckbox></apex:facet>
+                                 <apex:inputCheckbox id="ckbSinglechecke" value="{!rowItem.selected}" onchange="unCheckFacet('{!rowItem.selected}');" />
+                            </apex:column>    
+                             <apex:column width="5%">
+                                 <apex:facet name="header">Action</apex:facet>
+                                 <apex:commandLink value="{!rowItem.ed}" status="loading"  onclick="myFunction('{!rowItem.record[mapValuesField['Id']]}');">Edit</apex:commandLink>&nbsp;&nbsp;
+                                 <apex:commandLink value="{!rowItem.del}"  onclick="deleteFunction('{!rowItem.record[mapValuesField['Id']]}'); return false ;" status="loading" >Del</apex:commandLink>
+                            </apex:column>
+                            <apex:repeat value="{!getfield}" var="colItem" id="recordfield">
+                                 <apex:column value="{!rowItem.record[mapValuesField[colItem]]}"/>
+                            </apex:repeat>
+                       </apex:pageBlockTable>
+                       <center>
+                            <apex:commandButton value=" First " rerender="pageblocktable" action="{!beginning}" disabled="{!prev}" status="loading"/>
+                            <apex:commandButton value=" Previous " rerender="pageblocktable" action="{!previous}" disabled="{!prev}"  status="loading"/>
+                            <apex:commandButton value=" NEXT " rerender="pageblocktable" action="{!next}" disabled="{!nxt}"  status="loading"/>
+                            <apex:commandButton value=" LAST "  rerender="pageblocktable" action="{!end}" disabled="{!nxt}"  status="loading"/>
+                       </center> 
+                  </apex:outputPanel> 
+                 
+             </apex:pageBlockSection><br/><br/>
+             <apex:pageBlockSection columns="2" id="thefileshow2">
+                  <apex:pageblockSectionItem id="thePageBlockSectionItem3">
+                       <apex:outputPanel rendered="{!wrapperClassList.size !=0}" id="theFileShowFormat4" >
+                               <apex:outputLabel value="Record Display Size :" >
+                                    <apex:selectList id="exportPage" value="{!totalNumberOfPage}" size="1" >
+                                        <apex:selectOptions value="{!pageList}" id="ThePageValue"/>
+                                        <apex:actionSupport event="onchange" action="{!PageNumber}" id="thePageValueAction" reRender="pageblocktable" status="loading"/>
+                                    </apex:selectList>
+                               </apex:outputLabel>
+                             <apex:outputPanel >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</apex:outputPanel>
+                             <apex:outputPanel id="fileFormatshow5">
+                                 <apex:outputLabel value="Select File :" rendered="{!wrapperClassList.size !=0}" id="theFileFormatShow6" >
+                                       <apex:selectList value="{!fileNameValue}" size="1" id="thefileNameSelective" styleClass="chachVal" onchange="selectedValue('{!$Component.thefileNameSelective}');">
+                                            <apex:selectOptions value="{!fileOption}" id="FilePage7"  />
+                                       </apex:selectList>
+                                 </apex:outputLabel>
+                             </apex:outputPanel>
+                       </apex:outputPanel> 
+                  </apex:pageblockSectionItem> 
+                      <apex:outputpanel rendered="{!wrapperClassList.size !=0}" id="theOutputPanelAuth">
+                           <apex:commandButton value="File Upload On GoogleDrive" id="theAuthentication" status="loading" reRender="pageblocktable,theFileShowFormat"  onclick="login(this,'{!$Component.tableshow}');" action="{!uploadGoogleDrive}"/>
+                      </apex:outputpanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

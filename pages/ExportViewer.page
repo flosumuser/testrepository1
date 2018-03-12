@@ -1,0 +1,40 @@
+<apex:page controller="FieldExportController">
+    <apex:form >
+        <apex:actionFunction name="tablerefresh" reRender="table,pagination" action="{!writeObjectFieldsDefault}" status="StatusChange" />
+        <apex:pageBlock title="Custom Object Field Viewer">
+        <!-- picklist of custom object-->
+            <apex:outputText value="Select An Object:"/>
+                <apex:selectList onchange="tablerefresh()" value="{!selectedobject}" size="1" >
+
+                    <apex:selectOption itemValue="{!'1'}" itemLabel="Select"/>
+                    <apex:selectOptions value="{!objectlist}"></apex:selectOptions>
+            
+                </apex:selectList>
+            <apex:actionStatus startText="Updating Table ..." id="StatusChange"/>
+        <!-- table of object name and id field-->
+           <apex:pageBlockSection id="table"  >
+                   <apex:pageBlockTable value="{!result}"  var="item" rendered="{!if(result!= null && result.size>0,true,false)}" >
+                       <apex:column headerValue="Select" >
+                           
+                           <apex:inputCheckbox value="{!item.selected}" />
+                       </apex:column>
+                       
+                       <apex:column value="{!item.sob.id}" />
+              
+                       <apex:column value="{!item.sob["name"]}"/>
+                   </apex:pageBlockTable>
+                   <apex:actionStatus startText="Updating Table ..." id="pginationaction"/>   
+           </apex:pageBlockSection>
+            <!-- pagination buttons-->      
+           <apex:outputPanel id="pagination">
+                    <apex:commandButton value="Export" rendered="{!if(result!= null && result.size>0,true,false)}" action="{!processSelected}" />
+                    <apex:commandButton rendered="{!if(result!= null && result.size>0,true,false)}" value="First Page" rerender="pagination,table" action="{!FirstPage}"
+                             disabled="{!prev}" status="pginationaction" style="margin-left:175px;" />
+                     
+                    <apex:commandButton rendered="{!if(result!= null && result.size>0,true,false)}" value="Previous" rerender="table,pagination" action="{!previous}" disabled="{!prev}" status="pginationaction"/>
+                    <apex:commandButton rendered="{!if(result!= null && result.size>0,true,false)}" value="Next" rerender="table,pagination" action="{!next}" disabled="{!nxt}" status="pginationaction"/>
+                    <apex:commandButton rendered="{!if(result!= null && result.size>0,true,false)}" value="Last Page" rerender="pagination,table" action="{!LastPage}" disabled="{!nxt}" status="pginationaction"/>
+           </apex:outputPanel>         
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

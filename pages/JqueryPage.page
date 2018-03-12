@@ -1,0 +1,150 @@
+<apex:page controller="JqueryController">
+<apex:includeScript value="{!URLFOR($Resource.JsMimeDrag)}" />
+<apex:includeScript value="{!URLFOR($Resource.jsMimeTypeDrag)}" /> 
+<apex:includeScript value="{!URLFOR($Resource.jquery1102)}" /> 
+<apex:includeScript value="{!URLFOR($Resource.jqueryUI2)}" /> 
+<apex:includeScript value="{!URLFOR($Resource.dragTable)}"  />  
+<apex:stylesheet value="{!URLFOR($Resource.CSSUI)}" />
+<apex:stylesheet value="{!URLFOR($Resource.styleSheet)}" />
+
+<script type="text/javascript">
+    var bol=false;
+    var fieldId=null; 
+    function allowDrop(ev) { 
+        ev.preventDefault();
+    }
+    
+    function drag(ev,val){
+         ev.dataTransfer.setData("Text", ev.target.id);
+         fieldId=val;
+      
+    }
+    function dragable(ev,val){
+        
+        var containerDiv = document.getElementById("dragableFormat");
+        var innerDivs = containerDiv.getElementsByTagName("DIV");
+        var dragTableField='name';
+
+        for(var i=0; i<innerDivs.length; i++)
+        {
+             var h=document.getElementById(innerDivs[i].getAttribute("Id"));
+             console.log(h.innerHTML);
+        }
+     
+         //var divChild = document.getElementById("dragableFormat").children[1];
+         //var ch=divChild.getAttribute("ID").value;
+         //console.log(ch);
+         
+         ev.dataTransfer.setData("Text", ev.target.id);
+     
+         functionActionTableDrag(dragTableField);
+         if(dragTableField !=null)
+           dropable(dragTableField);
+    }
+    
+    function drop(ev) {
+        
+        if(fieldId != null){
+           actionFieldCal(fieldId);
+           bol=false;
+         }
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("Text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+    function funHeader(val){
+      console.log(val);
+    }
+    function dropable(dropableField){
+        dropableField='Name';
+        fieldDropableActionFunction(dropableField);
+    }
+ </script>
+
+<style type="text/css">
+     #draggable { width: 150px; height: 150px; padding: 0.5em; }
+    .dragdiv { width: 200px; height: 10px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+    .dropdiv { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; border : 1px; }
+    #content {
+        background: scroll 50% 50% #FFFFFF;
+        border: 1px solid #AAAAAA;
+        color: #222222;
+    }
+    .header {
+        background: scroll 50% 50% #CCCCCC;
+        border: 1px solid #AAAAAA;
+        color: #222222;
+        font-weight: bold;
+    }
+    .highlight {
+        background: scroll 50% top #EB5E00; 
+        border: 1px solid #FED22F;
+        color: #fff;  
+    }
+   #sortable1, #sortable2 {
+    border: 1px solid #eee;
+    width: 155px;
+    min-height: 28px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+    float: left;
+    margin-right: 10px;
+  }
+  #sortable1 li, #sortable2 li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+    font-size: 1.2em;
+    width: 120px;
+  }
+  /*  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+  html>body #sortable li { height: 1.5em; line-height: 1.2em; }
+  .ui-state-highlight { height: 1.5em; line-height: 1.2em; } */
+  </style> 
+ <apex:form id="theForm">
+        <apex:actionFunction action="{!actionFunctionVal}" name="actionFieldCal"  reRender="showRecordTable,FieldsName">
+              <apex:param name="val" value="val"  assignTo="{!val}"/>
+        </apex:actionFunction>
+        <apex:actionFunction action="{!DragTableFunctionValue}" name="functionActionTableDrag"  reRender="thePageBlockSection">
+              <apex:param name="dragTableField" value=""  assignTo="{!dropFieldsValue}"/>
+        </apex:actionFunction>
+         <apex:actionFunction action="{!DropableTableFunctionValue}" name="fieldDropableActionFunction"  reRender="FieldsName">
+              <apex:param name="dropableField" value=""  assignTo="{!dropableFiled}"/>
+        </apex:actionFunction>
+     <apex:pageBlock id="thePageBlock" title="Objects">
+              <apex:pageBlockSection title="Show Native Information" columns="2" >
+                    <apex:pageblockSectionItem > 
+                        <apex:outputPanel id="ObjectTabPanel">   
+                             <apex:outputLabel value="Objects Name :"/>
+                             <apex:selectList id="theObjectname" value="{!ObjectNameVal}" size="1">
+                                   <apex:selectOptions value="{!options}" id="TheObjectsName"/>
+                                   <apex:actionSupport event="onchange" action="{!actionObjectName}" id="theActionSupport" reRender="FieldsName,showRecordTable" />
+                             </apex:selectList>  
+                           </apex:outputPanel>   
+                        </apex:pageblockSectionItem>
+               </apex:pageBlockSection> 
+               <apex:pageBlockSection columns="2" id="thePageBlockSection">
+                          <apex:outputPanel id="FieldsName" > 
+                              <apex:outputLabel rendered="{!fieldsName.size != 0}" id="theOutputPanel" >
+                               <div id="sortable1" >
+                                  <apex:repeat value="{!fieldsName}" var="string" id="theRepeat">
+                                         <div id="{!string}" draggable="true" class="ui-state-highlight"  ondragstart="drag(event,this.id)"  ondrop="dropable(event)" ondragover="allowDrop(event)">{!string}</div>&nbsp;&nbsp;
+                                   </apex:repeat>
+                               </div>   
+                             </apex:outputLabel>   
+                         </apex:outputPanel>  
+                       <apex:outputPanel id="showRecordTable">
+                              <div id="dragableFormat" class="ui-state-highlight" ondrop="drop(event)"  draggable="true" ondragover="allowDrop(event)" ondragstart="dragable(event,this.id)">
+                                  <apex:pageBlockTable value="{!recordList}" var="rowItem" id="tableshow" >
+                                      <apex:repeat value="{!addlist}" var="colItem">
+                                      <apex:facet name="header"><apex:column value="{!rowItem[colItem]}" onmouseover="funHeader('{!rowItem[colItem]}')"/></apex:facet>
+                                        <div draggable="true"  id="{!rowItem[colItem]}" ><apex:column value="{!rowItem[colItem]}"  id="theValueColumn"/></div> 
+                                      </apex:repeat>
+                                 </apex:pageBlockTable> 
+                              </div>
+                       </apex:outputPanel> 
+                </apex:pageBlockSection>
+           </apex:pageBlock>   
+     </apex:form>
+ </apex:page>

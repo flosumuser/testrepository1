@@ -1,0 +1,211 @@
+<apex:page controller="QuickController" id="thePage">
+<apex:messages />
+<apex:stylesheet value="{!URLFOR($Resource.cssImageFile, 'colorbox.css')}"/>
+<apex:includeScript value="{!URLFOR($Resource.JqueryFile)}"/>
+<apex:includeScript value="{!URLFOR($Resource.colorBoxFile)}"/>
+<apex:includeScript value="{!URLFOR($Resource.validation)}"/>
+<script type="text/javascript">
+function checkAll(cb){
+   try{ 
+          var inputElem = document.getElementsByTagName("input");
+          for(var i=0; i<inputElem.length; i++)
+           {
+               if(inputElem[i].id.indexOf("ckbSinglecheckeStudent")!=-1)
+               inputElem[i].checked = cb.checked;
+           }            
+         }catch(e)
+       {
+           alert(e);
+       }
+ }
+/*function disableElement(studentDeleteId) {
+      //alert(studentDeleteId);
+      //var chk = document.getElementById("thePage:thePageBlock:thePageBlockSection:j_id13:theForm:Datatable:0:ckbSinglecheckeStudent").value;
+        var ck=document.getElementById("!$component.theForm.ckbSinglecheckeStudent").value;
+        if(chk==("on")){
+               deleteFunctioncall(studentDeleteId);
+               alert();
+         }
+}
+ */
+function editImageFun(studentEditId){
+         $(".inline").colorbox({inline:true, width:"50%"});
+    
+        //console.log('studentId>>>'+studentEditId);
+       editimageFunction(studentEditId);
+}
+
+ function colorBoxHide()
+ {
+   alert();
+   $("#colorBoxShow").hide(); 
+ } 
+ 
+
+
+function showDetailfunction(showId){
+  //alert(showId);
+ // console.log(showId);
+  showDetailFunction(showId);
+}
+function deleteDisableElement(studentEditId){
+    deleteFunction(studentEditId);
+}
+function colorPageBlock(pageblock, color) {
+    if (pageblock != null) pageblock.firstChild.style.cssText = "background-color: " + color + "";
+}
+
+function updateAfterColorBox(studentColorBoxId,studentColorBoxName){
+    var nameBoxName=document.getElementById('thePage:thePageBlock:thePageBlockSection:j_id18:theForm:EditInformation:j_id37:studentNameValue').value;
+    var nameBoxAge=document.getElementById('thePage:thePageBlock:thePageBlockSection:j_id18:theForm:EditInformation:j_id37:studentAgeValue').value;
+    var nameBoxAddress=document.getElementById('thePage:thePageBlock:thePageBlockSection:j_id18:theForm:EditInformation:j_id37:studentAddressValue').value;
+    var nameBoxDOB=document.getElementById('thePage:thePageBlock:thePageBlockSection:j_id18:theForm:EditInformation:j_id37:studentDOBValue').value;
+    
+    console.log(nameBoxName);
+   console.log(studentColorBoxId+nameBoxName+nameBoxAge+nameBoxDOB+nameBoxAddress);
+   updateStudentColorBoxRecord(studentColorBoxId,nameBoxName,nameBoxAge,nameBoxAddress,nameBoxDOB);
+
+    if(nameBoxName==null || nameBoxAge==null || nameBoxAddress==null || nameBoxDOB==null)
+    {
+      $(".validationColorBox").colorbox({inline:true, width:"50%"});
+    }
+    
+}
+
+</script>
+<style>
+  
+    .cursorPoint{
+        cursor: pointer;
+         font-size:16px;
+         cboxOverlay{ background:#666666; }
+         }
+   .pageBlockStyle{
+         background-color:#b0c4de;
+    }  
+  #bgImage{
+    background-color:yellow;
+    border:solid 2px #c3c8f3;
+    display:none;
+    width:500px;
+    height:300px;
+    opcity:0.3;
+    font-size:100%;
+    color:#999999;
+    z-index:-1;
+    margin-left:5cm;
+  }
+ #iframe{
+    padding:150px;
+    text-align:center;
+    background-color:#e5eecc;
+    border:solid 1px #c3c3c3;
+    display:none;
+}
+</style>
+<style>
+            #cboxOverlay{ background:#666666; }        
+</style>
+<apex:tabPanel id="StudentTabPanel" >   
+ <apex:tab label="Student" name="Student" id="tabdetails">
+  <apex:pageBlock id="thePageBlock" title="Student Record" mode="edit" tabStyle="studentNew__c">
+  <script>colorPageBlock(document.getElementById("{!$Component.thePageBlock}"), "orange");</script>
+   <apex:pageBlockSection title=" Show school Information"  columns="1" >
+     <apex:form >
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <apex:pageBlockSectionItem labelStyle="pageBlockStyle">
+      <apex:outputLabel value="School Name :"/>
+        <apex:selectList id="schoolData" value="{!schoolRecord}" size="1" >
+            <apex:selectOptions value="{!giveItems}" id="theSelectOptions"/>
+            <apex:actionSupport event="onchange" action="{!dropDownChangeValue}" id="theActionSupport" reRender="classData" />
+        </apex:selectList>
+      </apex:pageBlockSectionItem>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <apex:pageBlockSectionItem >
+       <apex:outputLabel value="Select Class Name :"/>
+         <apex:selectList id="classData" value="{!classRecord}" size="1">
+            <apex:selectOptions value="{!takeItems}" />
+            <apex:actionsupport event="onchange" action="{!dropDownClassValue}" rerender="studentOutputPanel" />
+         </apex:selectList>
+       </apex:pageBlockSectionItem>
+    </apex:form>
+   </apex:pageBlockSection><br/>
+  <div id="panel">
+  <apex:outputPanel id="studentOutputPanel">
+  <apex:pageBlockSection title="Show a Student Data" id="thePageBlockSection" rendered="{!studentNewData.size > 0}" columns="1">
+  <apex:pageBlockSectionItem >
+     <apex:form id="theForm">
+          <apex:actionFunction action="{!studentEditRecordValue}" name="editimageFunction" id="inptField" rerender="EditInformation">
+             <apex:param name="firstParam" assignTo="{!studentEditIdValue}"  value=" "/> 
+         </apex:actionFunction>
+         <apex:actionFunction action="{!showDetailRefPage}" name="showDetailFunction" id="detailShowId" rerender="Datatable">
+               <apex:param name="secondParam" assignTo="{!detailValue}"  value=" "/>
+         </apex:actionFunction>
+         <apex:actionFunction action="{!deleteStudentRecordData}" name=" deleteFunctioncall" id="deleteButtonImg" rerender="Datatable">
+           <apex:param name="thirdParam" assignTo="{!studentDeleteId}"  value=" "/> 
+         </apex:actionFunction>
+         <apex:commandButton action="{!deleteStudentData}"  id="DeleteButton" value="Delete Record" onclick="disableElement()" />
+         <apex:pageBlockTable value="{!studentNewData}" var="student" id="Datatable" rowClasses="odd,even" width="100%"> 
+              <apex:column id="theColoum" width="500px">
+                <apex:facet name="header"> <apex:inputCheckbox onclick="checkAll(this)" id="theInputCheckBox" ></apex:inputCheckbox></apex:facet>
+                <apex:inputCheckbox id="ckbSinglecheckeStudent" value="{!student.selected}" />
+                <!--  <script>dynamicFun(document.getElementById("{!$Component.ckbSinglecheckeStudent}").value);</script>-->
+              </apex:column>
+              <apex:column width="5000px">
+                <apex:facet name="header">Name</apex:facet>
+                <apex:outputLabel onmouseover="#" id="theNameLable" value="{!student.studentNew.Name}" styleClass="cursorPoint"/>
+              </apex:column> 
+              <apex:column width="5000px">
+                <apex:facet name="header">Age</apex:facet>
+                <apex:outputLabel value="{!student.studentNew.age__c}" id="theAgeLable"/>
+              </apex:column>
+               <apex:column width="5000px">
+                 <apex:facet name="header">Address</apex:facet>
+                 <apex:outputLabel value="{!student.studentNew.currentAddress__c}" id="theAddressLable"/>
+              </apex:column>
+              <apex:column width="5000px">
+                <apex:facet name="header">Date of Birth</apex:facet>
+                <apex:outputLabel value="{!student.studentNew.DOB__c}"/>
+              </apex:column>
+              <apex:column width="5000px">
+                <apex:facet name="header">Action</apex:facet>
+               <a class="inline" href="#inline_content"><apex:image id="theImage" value="{!$Resource.editImage}"  title="Edit" width="20" height="30" onclick="editImageFun('{!student.studentNew.Id}')">
+                </apex:image></a>&nbsp;&nbsp;&nbsp;
+             <a href="#"><apex:image id="deleteImage" value="{!$Resource.deleteImg}" width="20" height="30" title="Delete">
+                 </apex:image></a>
+           </apex:column>
+         </apex:pageBlocktable>
+              <div style='display:none' id="colorBoxStudent">
+                <div id='inline_content' style='padding:10px; background:#fff; margin-left:20px;'>
+                    <apex:pageBlock title=" Edit Student" mode="edit"  id="EditInformation">
+                        <apex:pageBlockSection columns="1" title="Edit Students" >
+                        <apex:actionFunction action="{!updateStudentDataColorBoxFunction}" name="updateStudentColorBoxRecord" rerender="colorBoxStudent">
+                             <apex:param assignTo="{!ColorBoxId}" name="forthParam" value=" "/>
+                             <apex:param assignTo="{!ColorBoxName}" name="nameBoxName" value=" "/>
+                             <apex:param name="AgeBox" value=" "/>
+                             <apex:param name="AddressBox" value=" "/>
+                             <apex:param name="DOBBox" value=" "/>
+                        </apex:actionFunction>
+                           <apex:inputField value="{!studentEdited.Name}" id="studentNameValue" />
+                           <apex:inputField value="{!studentEdited.age__c}" id="studentAgeValue" />
+                           <apex:inputField value="{!studentEdited.currentAddress__c}" id="studentAddressValue" />
+                           <apex:inputField value="{!studentEdited.DOB__c}" id="studentDOBValue"/>
+                        </apex:pageBlockSection>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <a class="validationColorBox" href="#validationInformation"><apex:commandButton value="Update" onclick="updateAfterColorBox('{!studentEdited.Id}','{!studentEdited.Name}')" rerender="colorBoxStudent"/></a>
+                          &nbsp;&nbsp;<apex:commandButton value="Cancel" action="{!cancelDataColorBox}"/>
+                    </apex:pageBlock>    
+               </div>
+          </div>
+          <div id="validationInformation"><apex:pageMessages /> Color Box validation is Calling</div>  
+        </apex:form>
+        </apex:pageBlockSectionItem>
+     </apex:pageblockSection>
+    </apex:outputPanel></div>
+   </apex:pageBlock>
+  </apex:tab>
+ </apex:tabPanel>
+ </apex:page>

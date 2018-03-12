@@ -1,0 +1,90 @@
+<apex:page >
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript">
+    
+            function all(){
+               bootbox.dialog({
+                  message: "I am a custom dialog",
+                  title: "Custom title",
+                  buttons: {
+                    success: {
+                      label: "Success!",
+                      className: "btn-success",
+                      callback: function() {
+                        Example.show("great success");
+                      }
+                    },
+                    danger: {
+                      label: "Danger!",
+                      className: "btn-danger",
+                      callback: function() {
+                        Example.show("uh oh, look out!");
+                      }
+                    },
+                    main: {
+                      label: "Click ME!",
+                      className: "btn-primary",
+                      callback: function() {
+                        Example.show("Primary button");
+                      }
+                    }
+                  }
+                });
+            
+            }
+    
+    
+    
+      
+      </script> 
+      
+      
+      <apex:form >     
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                 <button type="button" onclick="showWraningMsg('show','hello');" class="btn btn-primary">Message</button>
+                 <button type="button" onclick="all();" class="btn btn-primary">Message</button>
+                 <button type="button" onclick="showUpgradeMessage('Successfully Renewed','true');" class="btn btn-primary">Org Code</button>          
+            </apex:pageBlockSection>    
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
+
+<!--     function showUpgradeMessage(m,loggeduser)
+            {
+                //YUIHideLoading();
+                unblockme();
+                if(loggeduser =='true' && m!='')
+                {
+                    if( m == 'Successfully Renewed')
+                    {
+                            BootstrapDialog.show({
+                            message: m,
+                            title: 'Success',
+                            type: 'type-success',
+                            buttons: [  {
+                                label: 'Close',
+                                action: function(dialogItself){
+                                    dialogItself.close();
+                                }
+                            }]
+                            });
+                    
+                        window.location.href  = window.location.href ;
+                    }
+                    else
+                    showWraningMsg(m);
+                }else if(m !=''){
+                    showWraningMsg(m);
+                }
+            }
+
+-->
