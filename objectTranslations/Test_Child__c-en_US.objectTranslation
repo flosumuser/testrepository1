@@ -9,6 +9,11 @@
         <value>Test Childs</value>
     </caseValues>
     <fields>
+        <label><!-- Account ID --></label>
+        <name>Account_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Test Childs --></help>
         <label><!-- Account --></label>
         <name>Account__c</name>
         <relationshipLabel><!-- Test Childs --></relationshipLabel>

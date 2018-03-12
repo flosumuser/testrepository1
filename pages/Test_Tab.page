@@ -1,0 +1,91 @@
+<apex:page standardController="Line_item__c" extensions="TestTab">
+	<apex:pageblock >
+		<apex:pageblocksection title="pieSeries">
+			<apex:chart height="350" width="450" data="{!pieData}">
+		        <apex:pieSeries dataField="data" labelField="name" donut="40">
+		        	<apex:chartLabel rotate="315"/>
+		        </apex:pieSeries>
+		        <apex:legend position="right"/>
+		    </apex:chart>
+		</apex:pageblocksection>
+		
+		
+		<apex:pageblocksection title="bar Series">
+			<apex:chart height="350" width="450" data="{!liAccount}">
+				<apex:axis type="Numeric" position="left" fields="NumberOfEmployees" title="Number of Employees"/>      
+	            <apex:axis type="Category" position="bottom" fields="Name" title="Account Name"/>            
+	            <apex:barSeries orientation="vertical" axis="left" xField="Name" yField="NumberOfEmployees" stacked="true"/>
+		    </apex:chart>
+		</apex:pageblocksection>
+		
+		<apex:pageblocksection title="Horizontal bar Series">
+			<apex:chart height="250" width="350" data="{!data}">
+	            <apex:axis type="Numeric" position="left" fields="data1" title="MT WON" rendered="false"/>   
+	            <apex:axis type="Category" position="bottom" fields="name" title="Month" rendered="false"/>           
+	            <apex:barSeries orientation="horizontal" axis="left" xField="data1" yField="name" title="yField" stacked="true" highlight="false" showInLegend="true" tips="true"/>
+	        </apex:chart>
+	    </apex:pageblocksection>
+		
+		
+		<apex:pageblocksection title="areaSeries">
+			<apex:chart height="400" width="700" animate="true" legend="true" data="{!data}">
+			    <apex:legend position="right"/>
+			    <apex:axis type="Numeric" position="left" fields="data1,data2" 
+			        title="Closed Won" grid="true">
+			        <apex:chartLabel />
+			    </apex:axis>
+			    <apex:axis type="Category" position="bottom" fields="name" 
+			        title="Month of the Year">
+			        <apex:chartLabel rotate="315"/>
+			    </apex:axis>
+			    <apex:areaSeries axis="left" xField="name" yField="data1,data2" tips="true"/> 
+			</apex:chart>
+		</apex:pageblocksection>
+		<apex:pageblocksection title="gaugeSeries">
+			<apex:chart height="250" width="350" animate="true" legend="true" data="{!data}">
+			    <apex:axis type="Gauge" position="left" margin="-10" minimum="0" maximum="200" steps="20"/>
+			    <apex:gaugeSeries dataField="data1" highlight="true" tips="true" donut="80" colorSet="#F49D10, #ddd" needle="true">
+			        <apex:chartLabel display="over"/>
+			    </apex:gaugeSeries>
+			</apex:chart>
+		</apex:pageblocksection>
+		<apex:pageblocksection title="lineSeries">
+			<apex:chart height="400" width="700" data="{!data}">
+			    <apex:axis type="Numeric" position="left" fields="data1,data2"
+			        title="Opportunities Closed" grid="true"/>
+			    <apex:axis type="Category" position="bottom" fields="name"
+			        title="Month of the Year"/>
+			    <apex:lineSeries title="Closed-Won" axis="left" xField="name" yField="data1"
+			        fill="true" markerType="cross" markerSize="4" markerFill="#FF0000"/>
+			    <apex:lineSeries title="Closed-Lost" axis="left" xField="name" yField="data2"
+			        markerType="circle" markerSize="4" markerFill="#8E35EF"/>
+			</apex:chart>
+		</apex:pageblocksection>
+		<apex:pageblocksection title="radarSeries">
+			<apex:chart height="530" width="700" legend="true" data="{!data}">
+			    <apex:legend position="left"/>
+			    <apex:axis type="Radial" position="radial">
+			        <apex:chartLabel />
+			    </apex:axis>
+			    <apex:radarSeries xField="name" yField="data1" tips="true" opacity="0.4"/>
+			    <apex:radarSeries xField="name" yField="data2" tips="true" opacity="0.4"/>
+			    <apex:radarSeries xField="name" yField="data3" tips="true" 
+			        markerType="cross" strokeWidth="2" strokeColor="#f33" opacity="0.4"/>
+			</apex:chart>
+		</apex:pageblocksection>
+		<apex:pageblocksection title="scatterSeries">
+			<apex:chart height="530" width="700" animate="true" data="{!data}">
+			    <apex:scatterSeries xField="data1" yField="data2" 
+			        markerType="circle" markerSize="3"/>
+			    <apex:axis type="Numeric" position="bottom" fields="data1" 
+			        title="Torque" grid="true">
+			        <apex:chartLabel />
+			    </apex:axis>
+			    <apex:axis type="Numeric" position="left" fields="data2" 
+			        title="Lateral Motion" grid="true">
+			        <apex:chartLabel />
+			    </apex:axis>
+			</apex:chart>
+		</apex:pageblocksection>
+	</apex:pageblock>
+</apex:page>

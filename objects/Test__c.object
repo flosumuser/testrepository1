@@ -43,12 +43,12 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <enableActivities>false</enableActivities>
+    <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableReports>false</enableReports>
+    <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
@@ -304,7 +304,7 @@
         <label>Test Record</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Tests</pluralLabel>
+    <pluralLabel>Test Test</pluralLabel>
     <recordTypes>
         <fullName>RTOne</fullName>
         <active>true</active>

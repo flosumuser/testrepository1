@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomObject    xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -66,6 +66,15 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+    <fields>
+        <fullName>Test__c</fullName>
+        <externalId>false</externalId>
+        <label>Test</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
     <label>Component</label>
     <listViews>
         <fullName>TargetHelloQueu_Component</fullName>
@@ -73,7 +82,7 @@
         <label>TargetHelloQueu</label>
         <queue>TargetHelloQueu</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <allInternalUsers/>
         </sharedTo>
     </listViews>
     <nameField>

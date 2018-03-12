@@ -1,0 +1,12 @@
+<apex:page showHeader="false" sideBar="false" standardStyleSheets="false"  applyBodyTag="false" applyHtmlTag="false" docType="html-5.0">
+<script>
+function removeNagativeProperties(val){
+    if(val < 1)
+        document.getElementById("myText").value='1';
+}
+
+</script>
+    <apex:form >
+        <input type="number" id="myText"  size="3" value="1" styleclass="inputProperties" onchange="removeNagativeProperties(this.value);"/>
+    </apex:form>   
+</apex:page>

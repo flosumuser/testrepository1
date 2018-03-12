@@ -1,0 +1,20 @@
+<apex:page standardController="Corrective_Item__c" extensions="NewCorrectiveItemController">
+	<!--<apex:form >
+		<apex:actionfunction action="{!removeCall}" reRender="all" name="removeCall">
+			<apex:param assignTo="{!removeIndex}" name="removeIndex" value=""/>
+		</apex:actionfunction>
+		<apex:pageBlock >
+			<apex:pageBlockButtons > 
+				<apex:commandbutton value="Add New" action="{!addCorrective}" reRender="all" />
+			</apex:pageBlockButtons>
+			<apex:pageBlockSection title="New Corrective Items" id="all" columns="4">
+				<apex:repeat value="{!correctiveMap}" var="item">
+					<apex:InputField value="{!item[item].Building_Comp_Detail__c}"/>
+					<apex:OutputLabel value="{!item}"/>  
+					<!-- <apex:commandbutton value="Remove" onClick="removeCall('{!item}')" reRender="none"/>
+				</apex:repeat>
+				
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>-->
+</apex:page>

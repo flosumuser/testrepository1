@@ -1,7 +1,4 @@
 <apex:page controller="MetadataDeployDeleteController">
-    <script>
-        console.log('update 1.1);
-    </script>
     <apex:includeScript value="{!URLFOR($Resource.jszipmaster, 'jszip-master/dist/jszip.js')}"/>
     <apex:form id="form">
         <apex:sectionHeader title="Metadata Delete Demo"/>

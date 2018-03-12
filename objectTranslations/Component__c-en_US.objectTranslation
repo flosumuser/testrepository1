@@ -13,5 +13,9 @@
         <name>Branch__c</name>
         <relationshipLabel><!-- Components --></relationshipLabel>
     </fields>
+    <fields>
+        <label><!-- Test --></label>
+        <name>Test__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

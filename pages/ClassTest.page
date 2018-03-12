@@ -1,0 +1,102 @@
+<!--
+<apex:page></apex:page>
+-->
+<apex:page controller="ClassTest">
+    <apex:form >
+        <apex:pageBlock >
+        
+            <apex:pageBlockSection title="Student information">
+             <apex:selectList id="optionSelect" value="{!optionSelect}" size="1">
+                    
+            <h2> Select School :-</h2>&nbsp;&nbsp;
+             <apex:selectOptions value="{!items}"/>
+                          <apex:actionSupport event="onchange"  action="{!refreshContacts}" />                
+                </apex:selectList>         
+              </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Class information">
+               <apex:selectList id="ClassOption" value="{!ClassOption}" size="1">
+                    
+            <h2> Select Class :-</h2>&nbsp;&nbsp; <apex:selectOptions value="{!ClassItems}"/>
+                                                 <apex:actionSupport event="onchange"  action="{!classAction}" />                
+                </apex:selectList>            
+              </apex:pageBlockSection>
+        
+        
+            <apex:commandButton action="{!deleteRecord}"  id="DeleteButton" value="Delete Record" />
+           
+             <apex:pageBlockSection title="Show information">
+             
+             <apex:pageBlockTable value="{!student}" var="stud" id="theTable" rowClasses="odd,even">
+
+
+
+        
+        
+        <br></br>
+        <apex:column >
+             <apex:inputCheckbox value="{!stud.isSelected}"/>
+            
+
+        </apex:column>
+      
+      
+        <apex:column >
+            <apex:facet name="header">Name</apex:facet>
+            <apex:outputText value="{!stud.std.Name}"/>
+
+        </apex:column>
+      
+        &nbsp;&nbsp;
+        
+        <apex:column >
+
+            <apex:facet name="header"> Current Address</apex:facet>
+            <apex:outputText value="{!stud.std.CurrentAddress__c}"/>
+           
+
+        </apex:column>&nbsp;&nbsp;
+        
+        <apex:column >
+
+            <apex:facet name="header">Email ID</apex:facet>
+            <apex:outputText value="{!stud.std.Email_ID__c}"/>
+           
+
+        </apex:column>&nbsp;&nbsp;
+        
+        
+        <apex:column >
+
+            <apex:facet name="header">Mobile No.</apex:facet>
+            <apex:outputText value="{!stud.std.Mobile_No__c}"/>
+           
+
+        </apex:column>&nbsp;&nbsp;
+        
+        
+        <apex:column >
+
+            <apex:facet name="header">Parmanent Address</apex:facet>
+            <apex:outputText value="{!stud.std.Permanent_Address__c}"/>
+           
+
+        </apex:column>&nbsp;&nbsp;
+        
+        <apex:column >
+
+            <apex:facet name="header">&nbsp;&nbsp;&nbsp;&nbsp;Date of Birth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</apex:facet>
+            <apex:outputText value="{!stud.std.DOB__c}"/>
+           
+
+        </apex:column>&nbsp;&nbsp;
+        
+        
+        
+        
+      </apex:pageBlockTable> 
+          </apex:pageBlockSection>
+              
+             </apex:pageBlock>
+      </apex:form>
+</apex:page>

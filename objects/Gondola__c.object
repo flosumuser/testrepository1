@@ -77,7 +77,7 @@
         <label>TargetHelloQueu</label>
         <queue>TargetHelloQueu</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <allInternalUsers/>
         </sharedTo>
     </listViews>
     <nameField>

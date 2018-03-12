@@ -6,6 +6,6 @@
                 <apex:commandButton action="{!redirectToCreateNewUser}" value="Create New User"/>
             </apex:pageBlockButtons>
         </apex:pageBlock>
-        <c:FooterFoJumbo />
+        <c:footerfojumbo />
     </apex:form>
 </apex:page>

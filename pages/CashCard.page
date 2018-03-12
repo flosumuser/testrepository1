@@ -1,0 +1,124 @@
+<apex:page showHeader="false" sideBar="false" standardStyleSheets="false">
+      <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+       <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" />
+         
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css" />
+        
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+     </head>
+     <style>
+     .marginTopForAll{
+        margin-top: 5%;
+     }
+     .CardTextWidth{ 
+         width: 46%;
+     }
+     .textContain{
+         float:right;
+     }
+     .CommanLbl{
+         margin-bottom: 28%;
+         margin-top: 12%;
+     }
+     .commanDrop{
+         width: 22%;
+     }
+     .DayWidth{
+         margin-left: 24%;
+         margin-top: -6.9%;
+     }
+     .imgcard{
+        width: 22%;
+        margin-left: 24%;
+        margin-top: -9.1%;
+        height: 44px;
+     }
+     .PayBtnPayWidth{
+         width: 46%;
+         margin-top: 1%;
+     }
+       /* Large desktop */
+        @media (min-width: 1200px){
+        
+        }
+         
+        /* Portrait tablet to landscape and desktop */
+        @media (min-width: 768px) and (max-width: 979px) {
+        
+        }
+         
+        /* Landscape phone to portrait tablet */
+        @media (max-width: 767px) {
+           
+        }
+         
+        /* Landscape phones and down */
+        @media (max-width: 480px) {
+           .MobileFloat{
+             float:left;
+           }
+           .MarginForMemberShipCnt{
+             margin-top: 12%;
+           }
+        }
+        .collspaceOverRide{
+             display: none; 
+             visibility: hidden; 
+        }
+     
+     </style> 
+      <div class="container">
+            <div class="row marginTopForAll">
+                   <div class="col-md-3 navbar navbar-default" id="cardTextCnt">
+                      <div class="">
+                         <div class="CommanLbl">
+                            <label class="HeadingAddress">Test</label>
+                            <!--  <apex:iframe src="http://www.salesforce.com" scrolling="true" id="theIframe"/> -->
+                          </div>
+                      </div>
+                    </div>      
+                    <div class="col-md-3 " id="cardTextCnt">
+                      <div class="textContain MobileFloat">
+                         <div class="CommanLbl"><label class="HeadingAddress">Card No.</label></div>
+                         <div class="CommanLbl"><label for="PropertyName">Expire Date</label></div>
+                         <div class="CommanLbl"><label class="HeadingAddress">CVV</label></div>
+                      </div>     
+                    </div>
+                    <div class="col-md-6 collapse navbar-collapse" id="CartPayment">
+                        <div class="CardMargin">
+                             <div class=""><input type="text" class="form-control input-lg CardTextWidth" placeholder="Cart Number" /></div> 
+                             <div class="commanDrop">
+                                    <select class="form-control"> 
+                                      <option>Select</option>
+                                      <option>2010</option>
+                                      <option>2011</option>
+                                      <option>2012</option>
+                                     </select>
+                             </div>
+                             <div class="commanDrop DayWidth">
+                                    <select class="form-control"> 
+                                      <option>Select</option>
+                                      <option>01</option>
+                                      <option>02</option>
+                                      <option>03</option>
+                                   </select>
+                             </div>
+                        </div>
+                        <div class="commanDrop"><input type="text" class="form-control input-lg" placeholder="CVV" /></div>
+                        <div class="imageMargin"><img alt="CVV Number" class="imgcard" src="http://icredit247.com/wp-content/uploads/2013/12/HTFCU_ATM-DEBIT_CARD_BACK.gif" /></div>
+                        <div class="marginPayBtn">
+                            <button type="button" class="btn btn-primary PayBtnPayWidth" onClick="">Pay</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+</apex:page>

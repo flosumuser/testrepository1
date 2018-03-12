@@ -1,0 +1,98 @@
+<apex:page controller="Pagination" sidebar="true" showHeader="true">	
+	
+	<apex:includeScript value="{!URLFOR($Resource.jQueryUI,'jquery-ui-1.11.0.custom/external/jquery/jquery.js')}"/>
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<apex:includeScript value="{!URLFOR($Resource.jQueryUI,'jquery-ui-1.11.0.custom/jquery-ui.min.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.jQueryUI,'jquery-ui-1.11.0.custom/jquery-ui.js')}"/>
+	
+	<apex:stylesheet value="{!URLFOR($Resource.jQueryUI,'jquery-ui-1.11.0.custom/jquery-ui.css')}"/>
+<!--     <apex:stylesheet value="{!URLFOR($Resource.jQueryUI,'jquery-ui-1.11.0.custom/akottr.css')}"/> -->
+    
+	<script>
+		$(".draggable").draggable();
+		$(".droppable").droppable({
+		  drop: function() {
+		    alert( "dropped" );
+		  }
+		});
+	</script>
+		<style>
+		  #draggable {
+		    width: 100px;
+		    height: 100px;
+		    background: #ccc;
+		  }
+		  #droppable {
+		    position: absolute;
+		    left: 500px;
+		    width: 125px;
+		    height: 125px;
+		    background: #999;
+		    color: #fff;
+		    padding: 10px;
+		  }
+		  .block
+		  {
+		  	height: 500px;
+		  }
+	</style>
+	<apex:form >
+		<apex:pageBlock id="details">
+		<apex:pageblockTable value="{!acclist}" var="acc" styleclass="droppable">
+		<apex:column value="{!acc.Name}" styleclass="draggable"/>
+		<apex:column value="{!acc.website}"/>
+		<apex:column value="{!acc.AnnualRevenue}"/>
+		<apex:column value="{!acc.Description}"/>
+		<apex:column value="{!acc.Type}"/>
+		</apex:pageblockTable>
+		<apex:pageblockButtons id="droppable">
+		<apex:commandButton value="First Page" rerender="details" action="{!FirstPage}" disabled="{!prev}" id="draggable"/>
+		<apex:commandButton value="Previous" rerender="details" action="{!previous}" disabled="{!prev}" />
+		<apex:commandButton value="Next" rerender="details" action="{!next}" disabled="{!nxt}"/>
+		<apex:commandButton value="Last Page" rerender="details" action="{!LastPage}" disabled="{!nxt}"/>
+		</apex:pageblockButtons>
+		</apex:pageBlock>
+		<apex:pageBlock title="Drag" >
+			<html lang="en">
+				<head>
+				  <title>droppable demo</title>
+				  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"/>
+				  <style>
+				  #draggable {
+				    width: 100px;
+				    height: 100px;
+				    background: #ccc;
+				  }
+				  #droppable {
+				    position: absolute;
+				    left: 250px;
+				    top: 0;
+				    width: 125px;
+				    height: 125px;
+				    background: #999;
+				    color: #fff;
+				    padding: 10px;
+				  }
+				  </style>
+				  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+				  <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+				</head>
+				<body>
+ 
+				<div id="droppable">Drop here</div>
+				<div id="draggable">Drag me</div>
+				 
+				<script>
+				$( "#draggable" ).draggable();
+				$( "#droppable" ).droppable({
+				  drop: function() {
+				    alert( "dropped" );
+				  }
+				});
+				</script>
+				 
+				</body>
+				</html>
+		</apex:pageBlock>		
+	</apex:form>
+</apex:page>

@@ -1,0 +1,27 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false">
+  
+   <apex:includeScript value="{!URLFOR($Resource.coverFlowNew, '/coverflow.js')}"/>
+   <!--
+   <apex:includeScript value="{!URLFOR($Resource.coverFlowNew, '/coverflow.min.js')}"/>
+   <apex:includeScript value="{!URLFOR($Resource.coverFlowNew, '/coverflow.standalone.js')}"/>   
+   <apex:includeScript value="{!URLFOR($Resource.coverFlowNew, '/coverflow.standalone.min.js')}"/>   
+   -->
+   <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js"/>
+   <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.js"/>
+   <apex:stylesheet value="{!URLFOR($Resource.coverFlowNew, '/coverflow.css')}"/>
+
+  <h1>jQuery Coverflow Slider</h1>
+  <div id="coverflow"> 
+      <img  src="/servlet/servlet.ImageServer?id=015700000011Ya9&oid=00Dn0000000DRsm"/>
+      <img  src="/servlet/servlet.ImageServer?id=01570000002gQaz&oid=00Dn0000000DRsm"/>
+      <img  src="/servlet/servlet.ImageServer?id=015700000011Ya9&oid=00Dn0000000DRsm"/>
+      <img  src="/servlet/servlet.ImageServer?id=015700000011Ya9&oid=00Dn0000000DRsm"/>
+</div>      
+<apex:includeScript value="{!URLFOR($Resource.coverFlowNew, '/coverflow.min.js')}"/>
+<script>
+    $(function() {
+    // and kick off
+        $('#coverflow').coverflow();
+    });
+</script>   
+</apex:page>

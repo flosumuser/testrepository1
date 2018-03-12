@@ -1,0 +1,6 @@
+<apex:page controller="sendEmailController">
+	<apex:form >
+		<apex:inputText value="{!inputValue}" id="theTextInput"/>
+    	<apex:commandButton action="{!SendEmail}" value="Send Email" id="theButton"/>
+    </apex:form>
+</apex:page>

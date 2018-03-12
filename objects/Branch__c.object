@@ -87,7 +87,7 @@
             <filterItems>
                 <field>Branch__c.RecordType.Id</field>
                 <operation>notEqual</operation>
-                <value/>
+                <value></value>
             </filterItems>
             <infoMessage>Select a record type</infoMessage>
             <isOptional>false</isOptional>
@@ -129,7 +129,7 @@
             <filterItems>
                 <field>User.Id</field>
                 <operation>notEqual</operation>
-                <value/>
+                <value></value>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
@@ -164,7 +164,11 @@
         <active>true</active>
         <label>Tingu</label>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Branch__c</searchFilterFields>
+        <searchFilterFields>Branch_Name__c</searchFilterFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <sharingReasons>
         <fullName>Reason_One__c</fullName>

@@ -1,0 +1,31 @@
+<apex:page controller="DropboxController" action="{!tokenCaller}">   
+        <apex:pageblock rendered="{!if(accessToken != null && accessToken != '',true,false)}">  
+        	<apex:form >    
+                <apex:pageBlockSection title="File Upload"> 
+		                <apex:inputFile value="{!fileToUpload}" filename="{!file_name}"></apex:inputFile>
+		                <apex:commandbutton action="{!uploadFile}" value="Upload"/>
+	                
+	            </apex:pageBlockSection>
+	        </apex:form>
+	            <apex:form >
+		            <apex:pageBlockSection title="User Information">
+		                	<apex:commandbutton action="{!userInfo}" value="UseInfo"/>
+		            </apex:pageBlockSection>
+		            <apex:pageBlockSection title="Retrive File"  id="filetext">
+		            	<apex:outputText value="Select File"/>
+		            	<apex:selectList value="{!selectedFile}" size="1"> 
+		            		<apex:selectOptions value="{!FileList}"></apex:selectOptions>
+		            	</apex:selectList>
+		                <apex:commandbutton action="{!getFileFromDropbox}" value="Get File" reRender="filetext"/>
+		                <apex:inputTextarea rows="20" cols="220" value="{!download_file_text}" rendered="{!if(download_file_text != null && download_file_text != '',true,false)}">
+		                </apex:inputTextarea>
+		            </apex:pageBlockSection>
+		            <apex:pageBlockSection title="Create a Folder">
+		            	<apex:outputText value="Parentfolder/Name of the folder"/>
+		            	<apex:inputText value="{!folder_name}"/>
+		                <apex:commandbutton action="{!createFolder}" value="Create a Folder"/>
+	            	</apex:pageBlockSection>
+            	</apex:form><script>alert('{!accessToken}');</script>
+        </apex:pageblock>
+ 
+</apex:page>

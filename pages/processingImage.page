@@ -1,0 +1,32 @@
+<apex:page controller="ImageProcessController" tabStyle="Account">
+    <apex:outputpanel >
+        <apex:actionstatus id="actStatusId">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #DCD6D6;
+                       height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="top: 74.2px; width: 91px;">
+                        <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                        <span class="waitingDescription">Saving...</span>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+    </apex:outputpanel>
+    <apex:form id="formId">
+    <apex:pageBlock id="pgBlckId" title="New Account">
+         
+        <apex:pageBlockButtons >
+            <apex:commandButton action="{!somefunction}" value="Save" reRender="pgBlckId" status="actStatusId"/>
+        </apex:pageBlockButtons>
+         
+        <apex:pageBlockSection id="pgBlckSecId" title="Account Information" collapsible="false">
+            <apex:inputField value="{!account.name}"/>
+            <apex:inputField value="{!account.Phone}"/>
+            <apex:inputField value="{!account.Type}"/>
+            <apex:inputField value="{!account.Rating}"/>
+            <apex:inputField value="{!account.Industry}"/>
+            <apex:inputField value="{!account.site}"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

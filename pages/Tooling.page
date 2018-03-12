@@ -1,0 +1,22 @@
+<apex:page controller="ToolingController">
+	<apex:form >
+		<apex:pageblock >
+			<apex:pageblocksection title="Retrieve">
+				<apex:outputLabel value="MetadataType :"/>
+				<apex:selectlist value="{!metaType}" multiselect="false" size="1">
+					<apex:selectOptions value="{!metTypeList}"/>
+				</apex:selectlist>
+				<apex:outputLabel value="Meta Item Name :"/>
+				<apex:inputText value="{!itemName}"/>
+				<apex:commandbutton value="Retrieve" reRender="content" action="{!retrieveMetaItem}"/>
+				<apex:pageblocksectionitem id="content">
+					<textarea rows="8" cols="100">{!Content}</textarea> 
+				</apex:pageblocksectionitem>
+			</apex:pageblocksection>
+			<apex:pageblocksection title="Create"> 
+				<apex:commandbutton value="Create" reRender="content" action="{!createMetaItem}"/>
+				<apex:inputText value="{!body}"/>
+			</apex:pageblocksection>
+		</apex:pageblock> 
+	</apex:form>
+</apex:page>

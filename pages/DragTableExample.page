@@ -1,0 +1,162 @@
+<apex:page docType="html-5.0">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"/>
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+	<style>
+		  .draggable {
+		  	width:100px;
+		    height: 100px;
+		    background: #ccc;
+		  } 
+		   .draggable2 { 
+		   left: 500px;
+		  	width:100px;
+		    height: 100px;
+		    background: #ccc;
+		  } 
+ 		  #droppable {
+		    position: absolute;
+		    left: 250px; 
+		    top: 0; 
+		    width: 125px; 
+		    height: 125px;
+ 		    background: #999; 
+		    color: #fff;
+	    	padding: 10px;
+ 		  } 
+ 		  #div2 {
+ 		  	 width: 400px; 
+		    height: 400px;
+		    background: #779;
+ 		  }
+ 		  .div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+   </style>
+   <script>
+	 	function allowDrop(ev) {
+	    ev.preventDefault();
+		}
+		
+		function drag(ev) {
+		    ev.dataTransfer.setData("Text", ev.target.id);
+		}
+		
+		function drop(ev) {
+			console.log('drop');
+		    ev.preventDefault();
+		    var data = ev.dataTransfer.getData("Text");
+		    addColumn(document.getElementById(data));
+		}
+
+	</script>
+	<div>
+		<table>
+				<tr>
+					<td class="left-table">
+						<div class="panel panel-default">
+							<table class="table" border="1" >
+								<thead >
+									<tr>
+										<th draggable="true" ondragstart="drag(event)">Type</th>
+										<th draggable="true" ondragstart="drag(event)">Related To</th>
+										<th draggable="true" ondragstart="drag(event)">Assigned To</th>
+										<th draggable="true" ondragstart="drag(event)">Overall Status</th>
+										<th draggable="true" ondragstart="drag(event)">Approval History</th>
+									</tr>				
+								</thead>
+								<tbody>
+									<tr id="draggable">
+										<td >!sr.record.targetobject.Type</td>
+										<td><a href="/!sr.record.targetobject.Id">!sr.record.targetobject.Name</a></td>
+	 									<td><a href="/!sr.lastAssignedUserId">!sr.lastAssignedUser</a></td>
+										<td>!sr.record.Status</td>
+										<td>
+											<table class="table">
+												<thead>
+													<tr>
+														<th>Date</th>
+														<th>Aging</th>
+														<th>Status</th>
+														<th>Assigned To</th>
+														<th>Actual Approver</th>
+														<th>Comments</th>
+													</tr>				
+												</thead>
+												<tbody>
+													
+														<tr>
+															<td>!cr.createDate</td>
+															<td>!cr.aging</td>
+						 									<td>!cr.status</td>
+															<td><a href="/!cr.lastAssignedUserId">!cr.lastAssignedUser</a></td>
+															<td><a href="/!cr.actualApproverId">!cr.actualApprover</a></td>
+															<td>!cr.comments</td>
+														</tr>
+														<tr>
+															<td>!cr.createDate</td>
+															<td>!cr.aging</td>
+						 									<td>!cr.status</td>
+															<td><a href="/!cr.lastAssignedUserId">!cr.lastAssignedUser</a></td>
+															<td><a href="/!cr.actualApproverId">!cr.actualApprover</a></td>
+															<td>!cr.comments</td>
+														</tr>
+													
+												</tbody>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td>!sr.record.targetobject.Type</td>
+										<td><a href="/!sr.record.targetobject.Id">!sr.record.targetobject.Name</a></td>
+	 									<td><a href="/!sr.lastAssignedUserId">!sr.lastAssignedUser</a></td>
+										<td>!sr.record.Status</td>
+										<td>
+											<table class="table">
+												<thead>
+													<tr>
+														<th>Date</th>
+														<th>Aging</th>
+														<th>Status</th>
+														<th>Assigned To</th>
+														<th>Actual Approver</th>
+														<th>Comments</th>
+													</tr>				
+												</thead>
+												<tbody>
+													
+														<tr>
+															<td>!cr.createDate</td>
+															<td>!cr.aging</td>
+						 									<td>!cr.status</td>
+															<td><a href="/!cr.lastAssignedUserId">!cr.lastAssignedUser</a></td>
+															<td><a href="/!cr.actualApproverId">!cr.actualApprover</a></td>
+															<td>!cr.comments</td>
+														</tr>
+														<tr>
+															<td>!cr.createDate</td>
+															<td>!cr.aging</td>
+						 									<td>!cr.status</td>
+															<td><a href="/!cr.lastAssignedUserId">!cr.lastAssignedUser</a></td>
+															<td><a href="/!cr.actualApproverId">!cr.actualApprover</a></td>
+															<td>!cr.comments</td>
+														</tr>
+													
+												</tbody>
+											</table>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</td>
+					<td class="right-table">
+						<div draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" class="div1" >
+						</div>
+						<div draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" class="div1">
+						</div>
+						<div draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" class="div1">
+						</div>
+					</td>
+				</tr>
+			</table>
+	</div>
+</apex:page>

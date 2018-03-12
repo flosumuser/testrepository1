@@ -1,0 +1,16 @@
+<apex:page standardController="Account" renderAs="PDF"  applyBodyTag="false">
+    <head>
+        <style> 
+            body { font-family: 'Arial Unicode MS'; }
+            .companyName { font: bold 30px; color: red; }  
+        </style>
+    </head>
+    <body>
+        <center>
+        <h1>New Account Name!</h1>
+     
+       <label>Use <strong>shift</strong> or <strong>ctrl</strong> click to pick a few files: 
+<input type="file" id="myfiles" onchange="getFiles();" /></label>
+        </center>
+    </body>
+</apex:page>

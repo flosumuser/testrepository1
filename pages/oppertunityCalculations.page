@@ -1,0 +1,43 @@
+<apex:page controller="opportunityContoller" id="thePage">
+<apex:messages />
+<script type="text/javascript">
+
+</script>
+ <apex:form id="theform">
+             <apex:outputPanel id="thePanelTabularFormat" >
+	          
+	         </apex:outputPanel>
+     <apex:pageBlock id="thePageBlock" tabStyle="oppertunityProductAmountCalculation__c" mode="edit">
+         <apex:pageBlockSection id="theBlockSession" title=" Show Product Information"  columns="1">
+	         <apex:inputField value="{!oppertunityProduct.Product__c}"  id="productName"  >
+	         <apex:actionSupport event="onchange" rerender="thePanelTabularFormat" status="status"/>
+	         </apex:inputField>  
+	         <apex:inputField value="{!oppertunityProduct.Min__c}" id="productMin"/>
+	         <apex:inputField value="{!oppertunityProduct.Max__c}" id="productMax"/>
+	         <apex:inputField value="{!oppertunityProduct.Price__c}" id="productPrice"/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	   		&nbsp;&nbsp;&nbsp;&nbsp;<apex:commandButton value="INSERT PRODUCT"  action="{!saveRecordValue}" reRender="thePanelTabularFormat"/>
+	   	</apex:pageBlockSection>
+	 <apex:outputPanel id="thePanelTabularFormat" >
+	   <apex:pageMessages />
+      <apex:pageBlockSection title="Data show Tabular Format" id="thePageBlockSection" columns="1" rendered="{!ProductData.size > 0}">
+	           <apex:pageBlockTable value="{!ProductData}" var="product" id="Datatable" rowClasses="odd,even" width="100%">
+	               <apex:column value="{!product.Product__c}" width="500px">
+                      </apex:column>
+                      <apex:column id="theColoum2" width="500px">
+                           <apex:facet name="header">Minimun</apex:facet>
+                          <apex:outputLabel id="ProduceMin" value="{!Product.Min__c}" />
+                      </apex:column>
+                      <apex:column id="theColoum" width="500px">
+                          <apex:facet name="header">Maximum</apex:facet> 
+                          <apex:outputLabel id="ProductMax" value="{!product.Max__c}" />
+                      </apex:column>
+                      <apex:column id="theColoum4" width="500px">
+                          <apex:facet name="header">Price</apex:facet> 
+                          <apex:outputLabel id="ProductPrice" value="{!product.Price__c}" />
+                      </apex:column>
+                  </apex:pageBlockTable>
+           </apex:pageBlockSection>
+         </apex:outputPanel>  
+       </apex:pageBlock>
+	</apex:form>
+</apex:page>

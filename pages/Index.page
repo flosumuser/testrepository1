@@ -1,0 +1,11 @@
+<apex:page controller="myController">
+   <apex:form >
+      <apex:pageBlock mode="edit" id="block">
+        
+            Enter Name - <apex:inputText id="name" value="{!name}"/>
+              <apex:commandButton value="Save!" action="{!Save}"/>
+              
+              <apex:outputText value="{!name}"/>
+      </apex:pageBlock>
+   </apex:form>
+</apex:page>

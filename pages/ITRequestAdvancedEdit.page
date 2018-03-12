@@ -1,0 +1,17 @@
+<apex:page StandardController="IT_Request__c" showHeader="true" tabStyle="IT_Request__c">
+
+    <!-- Standard detail page-->
+    <apex:detail relatedList="false" title="true"/>
+
+    <!-- Hardware Related List custom component-->
+    <c:ITRequestHardware id="ITHardware" rerender="ITServices"/>
+
+    <!-- Software Related List custom component-->
+    <c:ITRequestServices id="ITServices"/>
+
+    <!-- Standard related Lists -->
+   <apex:relatedList list="OpenActivities" />
+   <apex:relatedList list="ActivityHistories" />
+   <apex:relatedList list="ProcessSteps" />   
+
+</apex:page>

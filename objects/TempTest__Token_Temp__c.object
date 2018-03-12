@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject    xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>TempTest__Token_Type__c</fullName>
         <deprecated>false</deprecated>
@@ -33,4 +35,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <label>Token Temp</label>
+    <visibility>Public</visibility>
 </CustomObject>

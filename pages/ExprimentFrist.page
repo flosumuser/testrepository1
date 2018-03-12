@@ -1,0 +1,15 @@
+<apex:page controller="SchoolController">
+    <apex:form >
+    <center>
+     <apex:pageBlock title="Student Records" mode="edit"><br></br><br></br>
+       <apex:pageBlockSection title="School information" columns="2">
+            <apex:selectList id="Choice" value="{!classRecord}" size="1">
+                <apex:selectOption itemValue="None" itemLabel="     --Select--    "/>
+                <apex:selectOption itemValue="Govt Senior Sec. School" itemLabel="Govt Senior Sec. School"/>
+                <apex:selectOption itemValue="Kabara Senior Sec. school" itemLabel="Kabara Senior Sec. school"/>
+            </apex:selectList>
+         </apex:pageBlockSection>
+           </apex:pageBlock>
+         </center>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,14 @@
+<apex:page controller="salesmanController" id="salesmanpage">
+ <apex:form >
+        <apex:pageBlock title="Student Record" mode="edit">
+           <apex:outputText value="{!message}"/>&nbsp;&nbsp;&nbsp; 
+               Name- <apex:inputField value="{!salesman.Name}"/><br></br>
+                address -<apex:inputField value="{!salesman.address__c}"/><br></br>
+                Phone : -<apex:inputField value="{!salesman.phone__c}"/><br></br>
+                salary - <apex:inputField value="{!salesman.price_lukup__c}"/><br></br>
+                Type - <apex:inputField value="{!salesman.classsName__c}"/><br></br>
+            <apex:commandButton action="{!dataSave}" value="Record Save"/>    
+        </apex:pageBlock>
+      </apex:form>         
+     
+</apex:page>

@@ -1,0 +1,112 @@
+<apex:page standardController="Google_Drive_File__c" extensions="BoxController">
+    <apex:includeScript value="{!URLFOR($Resource.jquery,'jquery/jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery,'jquery/block_ui.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jquery,'jquery/jqueryui.js')}"/>
+    <apex:pageblock title="Box.com Integration" id="fullpageblock"> 
+        <apex:form rendered="{!renderAuthBlock}"> 
+            <apex:pageblocksection title="Box.com Authorization">     
+                <apex:commandbutton action="{!boxAuth}" value="Authorization"/>
+            </apex:pageblocksection>
+            <apex:pageblocksection title="Box.com Token">
+                <apex:commandbutton action="{!boxTokenCaller}" value="Get Token" onclick="blockme()" oncomplete="j$.unblockUI();" reRender="fullpageblock"/>  
+            </apex:pageblocksection>
+        </apex:form>
+        <apex:pageblock rendered="{!!renderAuthBlock}">  
+        <apex:form >
+            <apex:outputpanel >
+                <apex:commandbutton value="Upload a file" action="{!renderFileUpload}" reRender="form1,form2" onclick="blockme()" oncomplete="j$.unblockUI();" />
+                <apex:commandbutton value="Create a folder" action="{!renderCreateFolder}" reRender="form2,form1" onclick="blockme()" oncomplete="j$.unblockUI();"/>
+                <apex:commandbutton value="Download a file" action="{!renderDownloadFile}" reRender="form2,form1" onclick="blockme()" oncomplete="j$.unblockUI();"/>
+                <apex:commandbutton value="Delete a file" action="{!renderDeleteFile}" reRender="form2,form1" onclick="blockme()" oncomplete="j$.unblockUI();"/>
+                <apex:commandbutton value="Box.com Drive" action="{!renderAllBlock}" reRender="form2,form1" onclick="blockme()" oncomplete="j$.unblockUI();"/>    
+            </apex:outputpanel>
+        </apex:form>
+        <apex:form id="form1">
+                    <apex:pageBlockSection title="File Upload" rendered="{!fileUploadRender}"> 
+                         <apex:outputText value="Select Parent Folder"/>
+                         <apex:selectList value="{!selectedParentFolderForFile}" size="1">
+                            <apex:selectOptions value="{!FolderList}"></apex:selectOptions>
+                         </apex:selectList>
+                         <apex:inputFile value="{!fileToUpload}" filename="{!file_name}" contentType="{!file_content_type}">
+                         </apex:inputFile>
+                         <apex:commandbutton action="{!uploadFileToBox}" value="Upload" />     
+                    </apex:pageBlockSection>
+             </apex:form>  
+             <apex:form id="form2">     
+                                    
+                    <apex:actionFunction reRender="delete" name="refreshDelete"></apex:actionFunction>
+                    <apex:actionFunction reRender="createfolder" name="refreshFolder"></apex:actionFunction>
+                    <apex:actionFunction reRender="downloadlink" name="refreshDownload"></apex:actionFunction>
+                    
+                    <apex:actionFunction reRender="all" name="openFolder" oncomplete="j$.unblockUI();"> 
+                        <apex:param assignTo="{!selectedFolderToOpen}" name="selectedFolderToOpen" value="{!}"></apex:param>
+                    </apex:actionFunction>
+                    
+                    <apex:pageBlockSection title="Create Folder" rendered="{!createFolderRender}">
+                        <apex:outputText value="Select Parent Folder"/>
+                        <apex:selectList value="{!selectedParentFolder}" size="1">
+                            <apex:selectOptions value="{!FolderList}"></apex:selectOptions>
+                        </apex:selectList> 
+                        <apex:outputText value="Folder Name"/>
+                        <apex:inputText value="{!folder_name}" onkeyup="refreshFolder()"/>
+                        <apex:commandbutton action="{!createBoxFolder}" value="Create a Folder" disabled="{!if(folder_name == '' || folder_name == null,true,false)}" id="createfolder"/>
+                    </apex:pageBlockSection>
+                    
+                    <apex:pageBlockSection title="Download a file" rendered="{!downloadFileRender}" columns="3">
+                        
+                        <apex:outputText value="Select File"/>
+                        <apex:selectList value="{!selectedFileToDownload}" size="1" onchange="refreshDownload()">
+                            <apex:selectOptions value="{!DownloadFileList}"></apex:selectOptions>
+                        </apex:selectList>  
+                        <apex:commandLink action="{!getFileFromBox}" value="Get File"  id="downloadlink" target="_blank"/>       
+                    </apex:pageBlockSection>  
+      
+                    <apex:pageBlockSection title="Delete A File" rendered="{!deleteFileRender}">                    
+                        <apex:outputText value="Select File"/>
+                        <apex:selectList value="{!selectedFileToDelete}" size="1" onchange="refreshDelete()">
+                            <apex:selectOptions value="{!DownloadFileList}"></apex:selectOptions>
+                        </apex:selectList>
+                        <apex:commandbutton action="{!deleteFileFromBox}" value="Delete file" disabled="{!if(selectedFileToDelete == 'None' || selectedFileToDelete == null,true,false)}" id="delete"/>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="All Operations" rendered="{!renderAll}" columns="1" id="all"> 
+                        <apex:commandbutton value="My Drive" reRender="all" onclick="blockme()" oncomplete="j$.unblockUI();">
+                            <apex:param assignTo="{!selectedFolderToOpen}" name="selectedFolderToOpen" value="{!'0'}"></apex:param>
+                        </apex:commandbutton>                   
+                        <apex:pageBlockTable value="{!DropList}" var="item"> 
+                            <apex:column value="{!item.name}" headerValue="{!'Name'}" ondblclick="openFolder('{!item.id}'),blockme()" />  
+                            <apex:column value="{!item.typeof}" headerValue="{!'Type'}"/>
+                            <apex:column headerValue="{!'Download'}"> 
+                                <apex:commandLink action="{!getFileFromBox}" value="Download" target="_blank" rendered="{!if(item.typeof == 'FILE',true,false)}">
+                                    <apex:param assignTo="{!selectedFileToDownload}" name="selectedFileToDownload" value="{!item.id}"></apex:param>
+                                </apex:commandLink>
+                            </apex:column>
+                            <apex:column headerValue="{!'Delete'}"> 
+                                <apex:commandbutton action="{!deleteFileFromBox}"  value="Delete" rendered="{!if(item.typeof == 'FILE',true,false)}" reRender="all">
+                                    <apex:param assignTo="{!selectedFileToDelete}" name="selectedFileToDelete" value="{!item.id}"></apex:param>
+                                </apex:commandbutton>
+                                <apex:commandbutton action="{!deleteFolderFromBox}" value="Delete" rendered="{!if(item.typeof == 'FOLDER',true,false)}" reRender="all">
+                                      <apex:param assignTo="{!selectedFileToDelete}" name="selectedFileToDelete" value="{!item.id}"></apex:param>
+                                </apex:commandbutton>  
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:pageBlockSection>
+                </apex:form>    
+    </apex:pageblock>
+    </apex:pageblock>
+    <script>
+     j$ = jQuery.noConflict(); 
+
+    function blockme() {
+        j$.blockUI({ css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+            } }); 
+
+      }
+    </script>
+</apex:page>

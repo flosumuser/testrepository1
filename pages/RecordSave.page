@@ -1,0 +1,16 @@
+<apex:page >
+	<script>
+		function mypopup()
+		{
+		    mywindow = window.open("https://c.na15.visual.force.com/apex/AccountPopUp", "mywindow", "location=1 , status=1, scrollbars=1,  width=800px,height=800px");
+		    mywindow.moveTo(0, 0);
+		}
+	</script>
+    <apex:form id="changeStatusForm">
+        <apex:pageBlock >
+             <apex:pageblocksection title="Show Pop For Save Account Records">
+              	<apex:commandButton value="Show PopUp" onClick="mypopup();" />
+       		 </apex:pageblocksection> 
+       </apex:pageBlock>
+    </apex:form>
+</apex:page>

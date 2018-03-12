@@ -1,0 +1,22 @@
+<apex:page sidebar="false" showHeader="false" standardController="Opportunity" rendered="{!Opportunity.Name != null}">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js">
+
+var j$ = jQuery.noConflict();
+var j$modalDialog = j$('<div></div>')
+       .html('test message goes here')
+       .dialog({
+            autoOpen: false,
+            title: 'My Modal Dialog',
+            resizable: false,
+            width: 400,
+            height: 400,
+            autoResize: true,
+            modal: true,
+            draggable: true
+});
+j$(document).ready(function(){
+    j$modalDialog.dialog('open');
+});
+</script>
+</apex:page>

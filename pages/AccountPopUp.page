@@ -1,0 +1,28 @@
+<apex:page standardController="Account" extensions="accountRecordController" >
+<script>
+    function windowclose(valueWin){
+        
+       if(valueWin != '') {
+                var v = confirm('Record is Successfully Submited ! Window is Close.........')
+                if(v == true)
+                    window.close();
+       }         
+               
+     }
+</script>
+  <apex:form >
+  <apex:actionFunction name="AccountSaveAction" oncomplete="windowclose('{!acc.name}')"/>
+  <apex:pageBlock title="My Content" mode="edit">    
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton onComplete="AccountSaveAction();" value="Save" action="{!save}" reRender="thePanelSection"/>
+            </apex:pageBlockButtons>
+      <apex:pageBlockSection title="My Content Section" columns="2" id="thePanelSection">
+        <apex:inputField value="{!acc.name}"/>
+        <apex:inputField value="{!acc.site}"/>  
+        <apex:inputField value="{!acc.type}"/>
+        <apex:inputField value="{!acc.accountNumber}"/>  
+        <!--<apex:inputText value="{!acc.Name}" /> !-->
+      </apex:pageBlockSection>
+     </apex:pageBlock>
+  </apex:form> 
+</apex:page>

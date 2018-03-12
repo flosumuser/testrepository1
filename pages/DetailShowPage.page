@@ -1,0 +1,47 @@
+<apex:page controller="DetailShowPage" id="thePage">
+ <apex:messages />
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+ <script type="text/javascript">
+   function jsValueName(studName)
+   {
+       alert(studName);
+   }
+ </script>
+
+<style type="text/css">
+   .locationError { color: blue; font-weight: strong;}
+    .employeeError { color: green; font-weight: strong;}
+</style>
+ 
+  <apex:outputPanel id="panel">
+   <apex:sectionHeader title="Show Information" subtitle="New Account" />
+      <apex:pageBlock title="Detail Show" mode="detail"  tabStyle="StudentNew__c" rendered="{!isShow=='ShowWorkCall'}" >
+        <apex:pageBlockSection title="Student Record Shows.. .."  >
+      	 	   <apex:outputField value="{!student.ID}"/>
+      	 	   <apex:outputField value="{!student.Name}"/>
+		       <apex:outputField value="{!student.age__c}"/>
+		       <apex:outputField value="{!student.currentAddress__c}"/>
+		       <apex:outputField value="{!student.DOB__c}"/>
+		</apex:pageBlockSection>
+      </apex:pageBlock>
+   </apex:outputPanel>
+   <apex:form >  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+   <apex:pageBlock title=" Edit Student" mode="edit" tabStyle="StudentNew__c" rendered="{!isEdit =='EditWorkCall'}" id="EditInformation">
+		<apex:pageBlockSection columns="1" title="Edit Students">
+		      <!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<apex:outputText value="{!validate}" styleClass="vald"/>-->
+		      <apex:pageMessages />
+		       <apex:inputField value="{!studentEdit.Name}" id="Location_validation"/>
+		       <apex:inputField value="{!studentEdit.age__c}" />
+		       <apex:inputField value="{!studentEdit.currentAddress__c}"/>
+		       <apex:inputField value="{!studentEdit.DOB__c}"/>
+		</apex:pageBlockSection>
+		      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	   		  <apex:commandButton value="Update"  onclick="jsValueName('{!studentEdit.Name}')" action="{!updateData}" rerender="EditInformation"  />
+	   		  &nbsp;&nbsp;<apex:commandButton value="Cancel" action="{!cancelData}" rerender="EditInformation"  />
+	   </apex:pageBlock>    
+ </apex:form>
+</apex:page>

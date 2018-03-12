@@ -1,0 +1,23 @@
+<apex:page sidebar="false" showheader="false" standardstylesheets="false">
+  <meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+    <style type="text/css" >
+         body
+         {
+           background-color:rgb(0,157,220);
+           color:white;
+           font-family:Arial;
+         }
+         h3
+         {
+           color:black;
+         }
+    </style>    
+    
+    <!-- Thank you page that requestor gets directed to after submitting idea. -->
+    
+    <body>
+        <h1>Thank You!</h1>
+        <h3>Someone will contact you soon to discuss your idea.</h3>
+    </body>
+    
+</apex:page>

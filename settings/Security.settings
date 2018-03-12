@@ -62,6 +62,7 @@
         <enableContentSniffingProtection>false</enableContentSniffingProtection>
         <enablePostForSessions>false</enablePostForSessions>
         <enableSMSIdentity>true</enableSMSIdentity>
+        <enableUpgradeInsecureRequests>false</enableUpgradeInsecureRequests>
         <enableXssProtection>false</enableXssProtection>
         <enforceIpRangesEveryRequest>false</enforceIpRangesEveryRequest>
         <forceLogoutOnSessionTimeout>true</forceLogoutOnSessionTimeout>

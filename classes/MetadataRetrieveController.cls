@@ -64,6 +64,7 @@ public with sharing class MetadataRetrieveController
         MetadataService.FileProperties[] fileProperties = service.listMetadata(queries, version );
         // Sort
         List<String> fullNames = new List<String>();
+        Set<String> fullNamesSet = new Set<String>();
         if(fileProperties!=null)
         {
             for(MetadataService.FileProperties fileProperty : fileProperties)
@@ -78,8 +79,8 @@ public with sharing class MetadataRetrieveController
                     fileProperty.fileName = 'objects/'+ MetaDataFolder +'.object';
                     fileProperty.fullName = MetaDataFolder +'.'+ fileProperty.fullName;
                 }
-                //if(fileProperty.manageableState == 'installed')
-                    fullNames.add(fileProperty.fullName);
+                fullNamesSet.add(fileProperty.fullName);
+                fullNames.add(fileProperty.fullName);
                 System.debug('Id---------'+fileProperty.Id);
                 System.debug('fullName---------'+fileProperty.fullName);
                 System.debug('fileName---------'+fileProperty.fileName);
@@ -87,12 +88,16 @@ public with sharing class MetadataRetrieveController
                 System.debug('namespacePrefix-'+fileProperty.namespacePrefix);
                 System.debug('type__x----------'+fileProperty.type_x);
                 System.debug('lastModifiedDate-'+fileProperty.lastModifiedDate);
+                System.debug('lastModifiedDate-'+fileProperty.createdDate);
             }
             fullNames.sort();
             for(String fullName : fullNames)
                 MetaDataItems.add(new SelectOption(fullName,EncodingUtil.urlDecode(fullName, 'UTF-8')));
+            System.debug('fileProperties.size()--'+fileProperties.size());
+            System.debug('fullNames.size()--'+fullNames.size());
+            System.debug(JSON.serialize(fullNamesSet));
         }
-
+        
         return null;    
     }
     
@@ -174,12 +179,12 @@ public with sharing class MetadataRetrieveController
             packageType.members = new List<String>{'*'};
             retrieveRequest.unpackaged.types.add(packageType);
         }
-        if(MetaDataType == 'Profile')
+        /*if(MetaDataType == 'Profile')
         {
             packageType = new MetadataService.PackageTypeMembers();
             packageType.name = 'CustomObject';
             packageType.members = new List<String>{'*'};
-            /*packageType.members = new List<String>{'Document',
+            packageType.members = new List<String>{'Document',
                                                     'WorkCoaching',
                                                     'WorkFeedback',
                                                     'WorkFeedbackQuestion',
@@ -192,9 +197,9 @@ public with sharing class MetadataRetrieveController
                                                     'MetricDataLink',
                                                     'WorkPerformanceCycle',
                                                     'PushTopic'
-                                                    };*/
-            retrieveRequest.unpackaged.types.add(packageType);
-        }
+                                                    };
+              retrieveRequest.unpackaged.types.add(packageType);
+        }*/
         if(MetaDataType == 'Translations')
         {
             packageType = new MetadataService.PackageTypeMembers();
@@ -237,7 +242,7 @@ public with sharing class MetadataRetrieveController
             packageType.members = new List<String>{'*'};
             retrieveRequest.unpackaged.types.add(packageType);
         }
-        AsyncResult = service.retrieve_x(retrieveRequest);
+        AsyncResult = service.retrieve(retrieveRequest);
         return null;    
     }
     
@@ -310,9 +315,9 @@ public with sharing class MetadataRetrieveController
         service.timeout_x = 120000;
         service.SessionHeader = new MetadataService.SessionHeader_element();
         service.SessionHeader.sessionId = session == null ? UserInfo.getSessionId(): session;
-        //service.SessionHeader.sessionId = '00D90000000xAkK!ARgAQIDfRdAti4a1dE5NK43JZ7N_QxRh5KdhOXH7_AfndZgWBMkr_2T7BOletEzwOqOhvkY4gOapPjHiJtJYlQfhJXYBGROv';
+        //service.SessionHeader.sessionId = '00D180000001vPI!AQsAQKJJsdRUW3aP2aLBH9zwg5MFZrkxQjIvA6j8XWwZNvro.dSr2R4Y7djqc_FE3ED4jKd_vPHLO1I6iMpT0HLsMLQLnG_t';
         service.setEndpoint_x(instance);
-        //service.setEndpoint_x('https://ap1.salesforce.com');      
+        //service.setEndpoint_x('https://arthrex--gems.cs23.my.salesforce.com');      
         return service; 
     }
     

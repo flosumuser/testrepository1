@@ -1,0 +1,54 @@
+<apex:page controller="TableDataGet" id="thePage">
+ <apex:pageBlock title="My Content">
+    <apex:pageBlockTable value="{!students}" var="student" id="theTable" rowClasses="odd,even">
+
+        <apex:facet name="caption"><h1><U>table caption</U></h1></apex:facet>
+        <br></br>
+        <apex:column >
+
+            <apex:facet name="header">Name</apex:facet>
+            <apex:outputText value="{!student.Name}"/>
+
+        </apex:column>
+      
+        &nbsp;&nbsp;
+        
+        <apex:column >
+
+            <apex:facet name="header">Class</apex:facet>
+
+          
+
+            <apex:outputText value="{!student.Class__c}"/>
+
+        </apex:column>&nbsp;&nbsp;
+        
+          <apex:column >
+
+            <apex:facet name="header">Email ID</apex:facet>
+
+          
+
+            <apex:outputText value="{!student.Email_ID__c}"/>
+
+        </apex:column>&nbsp;&nbsp;
+        
+        
+          <apex:column >
+
+            <apex:facet name="header">Mobile No.</apex:facet>
+
+           
+
+            <apex:outputText value="{!student.Mobile_No__c}"/>
+
+        </apex:column>&nbsp;&nbsp;
+        
+
+      </apex:pageBlockTable> 
+
+    </apex:pageBlock> 
+
+
+
+</apex:page>

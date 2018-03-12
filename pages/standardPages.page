@@ -1,0 +1,58 @@
+<apex:page standardController="Account" id="thePage">
+   <apex:form id="theForm">
+        <apex:pageBlock title="Account Detail">
+               <apex:pageBlockButtons >
+                    <apex:commandButton action="{!edit}" value="Edit" id="theEditBtn"/>
+                    <apex:commandButton action="{!delete}" value="Delete" id="theDeleteBtn"/>
+               </apex:pageBlockButtons> 
+               <apex:pageBlockSection >
+                    <apex:outputField value="{!Account.Name}"></apex:outputField>  
+                    <apex:outputField value="{!Account.AccountNumber}"/>
+                    <apex:outputField value="{!Account.OwnerId}"/>   
+                    <apex:outputField value="{!Account.Site}"></apex:outputField> 
+                    <apex:outputField value="{!Account.AccountSource}"></apex:outputField> 
+                    <apex:outputField value="{!Account.AnnualRevenue}"></apex:outputField> 
+                    <apex:outputField value="{!Account.BillingCity}"></apex:outputField> 
+                    <apex:outputField value="{!Account.BillingCountry}"></apex:outputField> 
+                    <apex:outputField value="{!Account.BillingLatitude}"></apex:outputField> 
+                    <apex:outputField value="{!Account.BillingLongitude}"></apex:outputField> 
+                    <apex:outputField value="{!Account.BillingPostalCode}"></apex:outputField> 
+                    <apex:outputField value="{!Account.BillingState}"></apex:outputField> 
+                    <apex:outputField value="{!Account.BillingStreet}"></apex:outputField> 
+                    <apex:outputField value="{!Account.CreatedById}"/> 
+                    <apex:outputField value="{!Account.Jigsaw}"></apex:outputField> 
+                    <apex:outputField value="{!Account.Description}"></apex:outputField>
+                    <apex:outputField value="{!Account.NumberOfEmployees}"></apex:outputField>
+                    <apex:outputField value="{!Account.Fax}"></apex:outputField>
+                    <apex:outputField value="{!Account.Industry}"></apex:outputField> 
+                    <apex:outputField value="{!Account.LastModifiedById}"/> 
+                    <apex:outputField value="{!Account.Ownership}"></apex:outputField> 
+                    <apex:outputField value="{!Account.ParentId}"/> 
+                    <apex:outputField value="{!Account.Phone}"></apex:outputField>  
+                    <apex:outputField value="{!Account.Rating}"></apex:outputField>
+                    <apex:outputField value="{!Account.ShippingCity}"></apex:outputField>
+                    <apex:outputField value="{!Account.ShippingCountry }"></apex:outputField>
+                    <apex:outputField value="{!Account.ShippingLatitude }"></apex:outputField>
+                    <apex:outputField value="{!Account.ShippingLongitude }"></apex:outputField>
+                    <apex:outputField value="{!Account.ShippingStreet }"></apex:outputField>
+                    <apex:outputField value="{!Account.ShippingPostalCode}"></apex:outputField>
+                    <apex:outputField value="{!Account.ShippingState}"></apex:outputField>
+                    <apex:outputField value="{!Account.Sic}"></apex:outputField>
+                    <apex:outputField value="{!Account.SicDesc}"></apex:outputField>
+                    <apex:outputField value="{!Account.TickerSymbol}"></apex:outputField>
+                    <apex:outputField value="{!Account.Type}"></apex:outputField>
+                    <apex:outputField value="{!Account.Website}"></apex:outputField>
+                    <apex:outputField value="{!Account.Active__c}"></apex:outputField>     
+                    <apex:outputField value="{!Account.CustomerPriority__c}"></apex:outputField>
+                    <apex:outputField value="{!Account.NumberofLocations__c}"></apex:outputField>     
+                    <apex:outputField value="{!Account.SLA__c}"></apex:outputField>     
+                    <apex:outputField value="{!Account.SLAExpirationDate__c}"></apex:outputField>     
+                    <apex:outputField value="{!Account.SLASerialNumber__c}"></apex:outputField>     
+                    <apex:outputField value="{!Account.UpsellOpportunity__c}"></apex:outputField>
+            </apex:pageBlockSection>
+       </apex:pageBlock>
+    </apex:form>  
+      <apex:detail relatedList="true"></apex:detail>
+      <apex:pageblock id="Account" title="Related Account">
+      </apex:pageblock>          
+</apex:page>
