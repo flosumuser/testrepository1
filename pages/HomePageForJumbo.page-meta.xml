@@ -5,6 +5,11 @@
     <confirmationTokenRequired>false</confirmationTokenRequired>
     <label>HomePageForJumbo</label>
     <packageVersions>
+        <majorNumber>10</majorNumber>
+        <minorNumber>111</minorNumber>
+        <namespace>LocalFlosum</namespace>
+    </packageVersions>
+    <packageVersions>
         <majorNumber>1</majorNumber>
         <minorNumber>9835</minorNumber>
         <namespace>SDOC</namespace>
@@ -13,6 +18,11 @@
         <majorNumber>1</majorNumber>
         <minorNumber>12</minorNumber>
         <namespace>TempTest</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>4</majorNumber>
+        <minorNumber>11</minorNumber>
+        <namespace>Zendesk</namespace>
     </packageVersions>
     <packageVersions>
         <majorNumber>1</majorNumber>

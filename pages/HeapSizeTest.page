@@ -2,7 +2,8 @@
     <apex:form >
         <apex:pageBlock >
             <apex:pageBlockButtons >
-                <apex:commandButton Value="Test Heap Size" onClick="testHeap(); return false;" reRender="none"/>
+                <apex:commandButton Value="Test Heap Size By Remote Action" onClick="testHeap(); return false;" reRender="none"/>
+                <apex:commandButton Value="Test Heap Size By Action" action="{!testHeapSize2}"/>
             </apex:pageBlockButtons>   
         </apex:pageBlock>
     </apex:form>

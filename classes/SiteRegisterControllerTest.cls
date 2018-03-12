@@ -8,6 +8,8 @@
         controller.email = 'test@force.com';
         controller.communityNickname = 'test';
         // registerUser will always return null when the page isn't accessed as a guest user
+        // registerUser will always return null when the page isn't accessed as a guest user
+        // registerUser will always return null when the page isn't accessed as a guest user
         System.assert(controller.registerUser() == null);    
         
         controller.password = 'abcd1234';

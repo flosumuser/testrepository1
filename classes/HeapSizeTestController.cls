@@ -1,7 +1,9 @@
 public with sharing class HeapSizeTestController
 {
+    transient public List<Wraper> li{get;set;}
     public HeapSizeTestController()
     {
+        li = new List<Wraper>();
     }
     
     @RemoteAction
@@ -29,6 +31,16 @@ public with sharing class HeapSizeTestController
         }
         return null;
     } 
+    
+    public void testHeapSize2()
+    {
+        li = new List<Wraper>();
+        for(Attachment acc: [Select Id,Name,Body From Attachment])
+        {
+            li.add(new Wraper(acc.Name,EncodingUtil.base64Encode(acc.Body)));
+        }
+
+    }
     
     Public class Wraper
     {

@@ -5,9 +5,4 @@
     <confirmationTokenRequired>false</confirmationTokenRequired>
     <description>Default Force.com User Registration Confirmation page</description>
     <label>SiteRegisterConfirm</label>
-    <packageVersions>
-        <majorNumber>1</majorNumber>
-        <minorNumber>9835</minorNumber>
-        <namespace>SDOC</namespace>
-    </packageVersions>
 </ApexPage>

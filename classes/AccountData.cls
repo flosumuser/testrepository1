@@ -5,6 +5,7 @@ public with sharing class AccountData
     public AccountDataRetriever()
     {
         //ClassMyWebService.MyWebService service = new ClassMyWebService.MyWebService();
+        fgh
     }
     //test
     public String getData()
@@ -12,8 +13,8 @@ public with sharing class AccountData
         ClassMyWebService.MyWebService service = new ClassMyWebService.MyWebService();
         service.SessionHeader = new ClassMyWebService.SessionHeader_element();
         service.SessionHeader.sessionId = SessionId;
-        ////
         return service.getBase64();
     }*/
-    //It is extra linesfe.
+    //It is extra line.//fg
+    //
 }

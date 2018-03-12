@@ -11310,6 +11310,10 @@ public class MetadataService {
         private String CallOptions_hns = 'CallOptions=http://soap.sforce.com/2006/04/metadata';
         private String AllOrNoneHeader_hns = 'AllOrNoneHeader=http://soap.sforce.com/2006/04/metadata';
         private String[] ns_map_type_info = new String[]{'http://soap.sforce.com/2006/04/metadata', 'MetadataService'};
+        
+        public void setEndpoint_x(String endpoint_x) {
+        	this.endpoint_x = endpoint_x != null ? (endpoint_x + '/services/Soap/m/38.0') : (URL.getSalesforceBaseURL().toExternalForm() + '/services/Soap/m/38.0'); 
+        }
         public MetadataService.DeleteResult[] deleteMetadata(String type_x,String[] fullNames) {
             MetadataService.deleteMetadata_element request_x = new MetadataService.deleteMetadata_element();
             request_x.type_x = type_x;

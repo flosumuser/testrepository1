@@ -6,11 +6,5 @@ private class ClassOneTest
         ClassOne controller = new ClassOne();
         controller.myMethod();
         controller.myMethod();
-        controller.myMethod();
-        controller.myMethod();
-        controller.myMethod();
-        controller.myMethod();
-        controller.myMethod();
-        controller.myMethod();
     }
 }

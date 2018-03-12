@@ -4,9 +4,4 @@
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
     <label>TestGitHub</label>
-    <packageVersions>
-        <majorNumber>1</majorNumber>
-        <minorNumber>9835</minorNumber>
-        <namespace>SDOC</namespace>
-    </packageVersions>
 </ApexPage>
